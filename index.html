@@ -7,40 +7,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
 </head>
 <body>
     <!-- Top Navigation -->
-    <nav class="navbar navbar-dark bg-primary navbar-expand-lg sticky-top shadow-sm">
+    <nav class="navbar navbar-dark navbar-expand-lg sticky-top shadow-sm" style="background: linear-gradient(135deg, #14B8A6 0%, #6366F1 100%);">
         <div class="container-fluid">
             <div class="navbar-brand d-flex align-items-center gap-2">
-                <svg class="logo" viewBox="0 0 40 40" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#14B8A6;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <!-- Circle Ring -->
-                    <circle cx="20" cy="20" r="18" fill="none" stroke="url(#logoGradient)" stroke-width="2.5"/>
-                    <!-- Clock -->
-                    <circle cx="20" cy="20" r="12" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
-                    <line x1="20" y1="14" x2="20" y2="20" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="20" y1="20" x2="24" y2="20" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-                    <!-- Queue People -->
-                    <circle cx="14" cy="24" r="2.5" fill="#FFFFFF"/>
-                    <circle cx="20" cy="25" r="2.5" fill="#FFFFFF"/>
-                    <circle cx="26" cy="24" r="2.5" fill="#FFFFFF"/>
-                    <!-- AI Circuit Lines -->
-                    <path d="M 28 8 L 32 8 L 32 12" stroke="url(#logoGradient)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                    <circle cx="32" cy="12" r="1.5" fill="url(#logoGradient)"/>
-                    <line x1="32" y1="12" x2="35" y2="15" stroke="url(#logoGradient)" stroke-width="1" stroke-dasharray="2,2"/>
-                    <!-- Checkmark -->
-                    <path d="M 12 12 L 14 14 L 18 10" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <img src="assets/logo.svg" alt="Smart Queue Buddy Logo" class="logo" width="32" height="32">
                 <div>
                     <div class="fw-bold">Smart Queue Buddy</div>
-                    <small class="text-light opacity-75">AI Powered Queue Intelligence</small>
+                    <small class="text-light opacity-75">AI That Gives Time Back</small>
                 </div>
             </div>
 
@@ -112,19 +90,19 @@
                 </div>
                 <div class="kpi-grid">
                     <div class="kpi-card glass">
-                        <div class="kpi-icon" style="color: #2563EB;"><i class="bi bi-ticket-detailed"></i></div>
+                        <div class="kpi-icon" style="color: #14B8A6;"><i class="bi bi-ticket-detailed"></i></div>
                         <div class="kpi-label">Current Token</div>
                         <div class="kpi-value" id="current-token">B-1045</div>
                         <div class="kpi-subtext">Service Window: 02:30 PM</div>
                     </div>
                     <div class="kpi-card glass">
-                        <div class="kpi-icon" style="color: #14B8A6;"><i class="bi bi-person-check"></i></div>
+                        <div class="kpi-icon" style="color: #6366F1;"><i class="bi bi-person-check"></i></div>
                         <div class="kpi-label">Your Token</div>
                         <div class="kpi-value" id="your-token">B-1052</div>
                         <div class="kpi-subtext">Position: 7 in Queue</div>
                     </div>
                     <div class="kpi-card glass">
-                        <div class="kpi-icon" style="color: #F59E0B;"><i class="bi bi-hourglass-split"></i></div>
+                        <div class="kpi-icon" style="color: #2563EB;"><i class="bi bi-hourglass-split"></i></div>
                         <div class="kpi-label">Estimated Wait Time</div>
                         <div class="kpi-value" id="wait-time">12 mins</div>
                         <div class="kpi-subtext">Average: 1.5 min/customer</div>
@@ -607,11 +585,12 @@
             <footer class="footer">
                 <div class="footer-content">
                     <div class="footer-section">
+                        <img src="assets/logo.svg" alt="Logo" style="height: 24px; margin-bottom: 8px;">
                         <h6>Smart Queue Buddy</h6>
                         <p>Enterprise Queue Intelligence Software</p>
                     </div>
                     <div class="footer-section">
-                        <small>Integrated with Redrob Ecosystem</small>
+                        <small>AI That Gives Time Back</small>
                     </div>
                     <div class="footer-section text-end">
                         <small>Version 1.0 • © 2026 Smart Queue Buddy</small>
