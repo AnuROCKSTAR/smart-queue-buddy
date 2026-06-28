@@ -1,194 +1,380 @@
-# Smart Queue Buddy - Enterprise Queue Management Software
+# Smart Queue Buddy – Enterprise Queue Intelligence Software
 
-A professional web-based enterprise software designed for organizations such as banks, hospitals, universities, government offices, and public service centers.
+## Tagline
 
-## Features
+**AI That Gives Time Back**
 
-### 🎯 Core Functionality
-- **Real-Time Queue Monitoring**: Live tracking of queue status across service counters
-- **AI-Powered Predictions**: Machine learning-based wait time predictions with confidence scores
-- **Token Management**: Complete token lifecycle management with QR code generation
-- **Smart Notifications**: Multi-channel notification system (SMS, Email, WhatsApp, Browser)
-- **IVR Support**: Toll-free number support for feature phone users
-- **Analytics Dashboard**: Comprehensive queue analytics and performance metrics
+---
 
-### 🎨 Design Features
-- **Enterprise-Grade UI**: Professional dashboard inspired by ServiceNow, SAP Fiori, and Salesforce
-- **Glassmorphism Cards**: Modern glassmorphism design with smooth transitions
-- **Responsive Layout**: Desktop-first responsive web application
-- **Blue & Teal Palette**: Corporate color scheme suitable for professional environments
-- **Bootstrap 5**: Built with Bootstrap 5 for reliability and consistency
+## Project Overview
 
-### 📊 Dashboard Sections
-1. **Queue Overview** - KPI cards showing current status
-2. **Live Queue Monitor** - Real-time queue progression
-3. **AI Prediction Panel** - AI-powered insights and recommendations
-4. **Queue Timeline** - Customer journey tracking
-5. **Token Management** - Actions like cancel, reschedule, print
-6. **Notification Center** - Preference management
-7. **IVR Support** - Toll-free number menu
-8. **Customer Support** - Help desk and ticket system
-9. **Queue Analytics** - Charts and visualizations
-10. **Privacy Panel** - Data security information
+Develop a **professional enterprise web-based software** called **Smart Queue Buddy**.
 
-### 🚀 Technical Stack
-- **HTML5** - Semantic markup
-- **CSS3** - Advanced styling with CSS variables and gradients
-- **JavaScript** - Vanilla JS (no frameworks required)
-- **Bootstrap 5** - Responsive framework
-- **Chart.js** - Data visualization
-- **No Backend Required** - All data is simulated
+Smart Queue Buddy is an **AI-powered Queue Intelligence Software** that enables organizations such as **banks, hospitals, universities, government offices, and public service centres** to optimize visitor flow through intelligent queue prediction, live monitoring, digital notifications, and AI-driven arrival recommendations.
 
-## Project Structure
+This is **enterprise software**, **not a mobile application**.
 
-```
-smart-queue-buddy/
-├── index.html          # Main HTML file
-├── css/
-│   └── styles.css      # Complete styling with glassmorphism
-├── js/
-│   └── script.js       # Interactive functionality
-└── README.md           # This file
-```
+The interface should resemble professional enterprise platforms such as **Microsoft 365 Admin Center, Atlassian Jira, Zoho CRM, SAP Fiori, or ServiceNow**.
 
-## Getting Started
+---
 
-### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- No server or backend required
+# Branding
 
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/AnuROCKSTAR/smart-queue-buddy.git
-cd smart-queue-buddy
-```
-
-2. Open `index.html` in your web browser:
-```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js
-npx http-server
-
-# Or simply open index.html in your browser
-```
-
-3. Access the application at `http://localhost:8000`
-
-## Usage
-
-### Navigation
-- Use the left sidebar to navigate between sections
-- Click menu items to view different dashboard sections
-- Use the top navigation for organization and time information
-
-### Queue Simulation
-1. Scroll to the "Queue Simulation" section
-2. Click "Start Queue Simulation" button
-3. Watch as the dashboard updates in real-time with:
-   - Token numbers advancing
-   - Wait times changing
-   - Queue length updating
-   - Charts refreshing
-   - AI predictions updating
-
-### Features to Explore
-- **Token Management**: Click buttons to cancel, reschedule, print, or generate QR codes
-- **Notifications**: Toggle notification preferences (SMS, Email, WhatsApp, Browser)
-- **IVR Menu**: View the toll-free support menu
-- **Analytics**: Charts showing queue trends and waiting times
-- **Recommendations**: Smart suggestions based on queue conditions
-
-## Color Palette
-
-### Primary Colors
-- **Primary Blue**: #2563EB
-- **AI Teal**: #14B8A6
-- **Innovation Indigo**: #6366F1
-
-### Status Colors
-- **Success (Green)**: #22C55E
-- **Warning (Amber)**: #F59E0B
-- **Danger (Red)**: #EF4444
-- **Information (Blue)**: #3B82F6
-- **AI Highlight (Purple)**: #8B5CF6
-
-## Browser Support
-
-- Chrome/Edge: ✅ Latest versions
-- Firefox: ✅ Latest versions
-- Safari: ✅ Latest versions
-- Mobile browsers: ✅ Responsive design
-
-## Features Implemented
-
-✅ Professional enterprise dashboard
-✅ Real-time queue monitoring
-✅ AI prediction panel
-✅ Token management system
-✅ Notification preferences
-✅ IVR support center
-✅ Customer support section
-✅ Queue analytics with Chart.js
-✅ Smart recommendations
-✅ Privacy panel
-✅ Queue simulation
-✅ Glassmorphism cards
-✅ Responsive design
-✅ Timeline visualization
-✅ Status indicators
-✅ Multi-channel notifications
-
-## Responsive Breakpoints
-
-- **Desktop**: Full layout (1200px+)
-- **Tablet**: Adjusted grid (768px - 1199px)
-- **Mobile**: Single column (< 768px)
-
-## Performance
-
-- Lightweight HTML/CSS/JS
-- No external dependencies except Bootstrap and Chart.js
-- Smooth animations and transitions
-- Optimized for fast loading
-
-## Accessibility
-
-- Semantic HTML structure
-- ARIA labels on icons
-- Keyboard navigation support
-- High contrast colors
-- Clear typography
-
-## Future Enhancements
-
-- Backend API integration
-- Real database connectivity
-- Advanced analytics
-- Multi-language support
-- Dark mode theme
-- Mobile app version
-- Real-time WebSocket updates
-
-## License
-
-Copyright © 2026 Smart Queue Buddy. All rights reserved.
-
-## Support
-
-For issues or questions, please contact support through:
-- Toll-Free: 1-800-QUEUE-911
-- Email: support@smartqueuebuddy.com
-- Website: www.smartqueuebuddy.com
-
-## Credits
+## Official Product Name
 
 **Smart Queue Buddy**
-- Enterprise Queue Intelligence Software
-- Integrated with Redrob Ecosystem
-- Version 1.0
 
-Developed with modern web standards and enterprise-grade design principles.
+### Official Tagline
+
+**AI That Gives Time Back**
+
+---
+
+## Logo Requirements
+
+Use the **uploaded Smart Queue Buddy logo** as the official brand identity.
+
+**Do NOT generate or replace the logo.**
+
+The uploaded logo must appear consistently on:
+
+* Login Page
+* Top Navigation Bar
+* Sidebar
+* Loading Screen
+* Dashboard
+* Reports
+* Browser Favicon
+* Footer
+
+Display the logo together with:
+
+**Smart Queue Buddy**
+
+**AI That Gives Time Back**
+
+Maintain consistent branding throughout the software.
+
+---
+
+# Official Brand Color Palette
+
+Use the same color palette throughout the entire software.
+
+## Primary Colors
+
+Primary Blue
+#2563EB
+
+AI Teal
+#14B8A6
+
+Innovation Indigo
+#6366F1
+
+Deep Navy
+#1E3A8A
+
+Accent Cyan
+#2DD4BF
+
+---
+
+## Backgrounds
+
+Main Background
+#F8FAFC
+
+Secondary Background
+#F1F5F9
+
+Card Background
+#FFFFFF
+
+Section Background
+#EEF6FF
+
+---
+
+## Typography
+
+Primary Text
+#1E293B
+
+Secondary Text
+#475569
+
+Muted Text
+#64748B
+
+White
+#FFFFFF
+
+---
+
+## Buttons
+
+Primary
+#2563EB
+
+Hover
+#1D4ED8
+
+Success
+#22C55E
+
+Warning
+#F59E0B
+
+Danger
+#EF4444
+
+---
+
+## Status Colours
+
+Queue Normal
+#22C55E
+
+Queue Moderate
+#F59E0B
+
+Queue Busy
+#EF4444
+
+AI Prediction
+#6366F1
+
+Live Queue
+#2563EB
+
+---
+
+## Cards
+
+Default
+#FFFFFF
+
+AI Card
+#EEF2FF
+
+Queue Card
+#ECFEFF
+
+Notification Card
+#EFF6FF
+
+Success Card
+#DCFCE7
+
+Warning Card
+#FEF3C7
+
+Error Card
+#FEE2E2
+
+---
+
+## Sidebar
+
+Background
+#1E3A8A
+
+Active Menu
+#2563EB
+
+Hover
+#3B82F6
+
+Text
+#FFFFFF
+
+---
+
+## Charts
+
+Series 1
+#2563EB
+
+Series 2
+#14B8A6
+
+Series 3
+#6366F1
+
+Series 4
+#22C55E
+
+Series 5
+#F59E0B
+
+---
+
+# User Interface Requirements
+
+Design Style
+
+• Enterprise SaaS Dashboard
+
+• AI Operations Dashboard
+
+• Microsoft Fluent inspired
+
+• Atlassian inspired
+
+• Zoho inspired
+
+• Clean Minimal Interface
+
+• Professional Corporate UI
+
+• Desktop-first Responsive
+
+• Large KPI Cards
+
+• Interactive Charts
+
+• Glassmorphism Cards
+
+• Rounded Corners (16px)
+
+• Soft Shadows
+
+• Professional Sidebar Navigation
+
+• Large White Space
+
+• Inter Font
+
+• High Readability
+
+• Smooth Animations
+
+• Accessible Colour Contrast
+
+---
+
+# Avoid
+
+Do NOT create
+
+• Mobile App Interface
+
+• Cartoon UI
+
+• Neon Colours
+
+• Gaming Style
+
+• Dark Theme by default
+
+• Overly colourful gradients
+
+• Cluttered Dashboard
+
+---
+
+# Software Modules
+
+Create the following modules.
+
+✔ Login
+
+✔ Dashboard
+
+✔ Queue Monitor
+
+✔ AI Prediction
+
+✔ Queue Timeline
+
+✔ Token Management
+
+✔ Notification Centre
+
+✔ IVR Support
+
+✔ Help Centre
+
+✔ Analytics Dashboard
+
+✔ Reports
+
+✔ Settings
+
+---
+
+# Dashboard Widgets
+
+Current Token
+
+Your Token
+
+Estimated Waiting Time
+
+Best Arrival Time
+
+Prediction Confidence
+
+Queue Progress
+
+Average Service Time
+
+Peak Hour Indicator
+
+Current Queue Speed
+
+Live Notifications
+
+Recommended Arrival Time
+
+---
+
+# Simulation
+
+Include a working demonstration.
+
+When the user clicks
+
+**Start Queue Simulation**
+
+simulate
+
+* Token movement
+* Waiting time countdown
+* Queue progress
+* AI prediction updates
+* Charts updating
+* Arrival recommendation changes
+* Notification pop-ups
+
+Everything should update dynamically using JavaScript.
+
+---
+
+# Technology
+
+Use
+
+HTML5
+
+CSS3
+
+Bootstrap 5
+
+JavaScript
+
+Chart.js
+
+No backend.
+
+Everything should function using simulated data.
+
+---
+
+# Final Goal
+
+The finished product should look like a commercial enterprise software platform that could realistically be sold to organizations such as Redrob, hospitals, banks, universities, and government departments.
+
+The branding, typography, colour palette, logo, animations, layout, and user experience should all consistently reflect the identity of **Smart Queue Buddy – AI That Gives Time Back**.
+
