@@ -1,580 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Queue Buddy — Know before you go</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#0B1E3D;
-    --surface:#F4F7FB;
-    --surface-2:#EAF1FA;
-    --paper:#FFFFFF;
-    --teal:#1FBFA8;
-    --blue:#2E6FE0;
-    --purple:#7B3FE4;
-    --marigold:#2E6FE0;
-    --marigold-dim:#5C7DB0;
-    --stamp:#7B3FE4;
-    --mint:#1FBFA8;
-    --line: rgba(11,30,61,0.10);
-    --grad: linear-gradient(100deg, var(--teal), var(--blue) 55%, var(--purple));
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--surface);
-    color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  }
-  a{color:inherit;}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
-
-  /* NAV */
-  nav{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:20px 24px;max-width:1080px;margin:0 auto;
-  }
-  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:0.02em;font-size:16px;}
-  .brand-logo{width:32px;height:32px;object-fit:contain;display:block;}
-  nav .links{display:flex;gap:28px;font-size:14px;color:var(--blue);}
-  nav .links a{text-decoration:none;opacity:0.85;}
-  nav .links a:hover{opacity:1;text-decoration:underline;}
-  nav .links a:focus-visible, button:focus-visible, .ticket:focus-visible{outline:2px solid var(--marigold); outline-offset:3px;}
-
-  /* HERO */
-  header.hero{padding:28px 24px 60px;}
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    color:var(--marigold);
-    font-size:12.5px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    margin:0 0 18px;
-  }
-  h1{
-    font-family:'Archivo Black', sans-serif;
-    font-size:clamp(34px, 6vw, 60px);
-    line-height:1.04;
-    margin:0 0 18px;
-    letter-spacing:-0.01em;
-  }
-  h1 em{
-    font-style:normal;
-    background:var(--grad);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .lede{
-    font-size:17px;line-height:1.6;color:rgba(11,30,61,0.66);
-    max-width:480px;margin:0 0 30px;
-  }
-
-  .hero-grid{
-    display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:start;
-  }
-  @media (max-width:840px){ .hero-grid{grid-template-columns:1fr;} }
-
-  /* APP CARD */
-  .ticket-stage{display:flex;justify-content:center;}
-  .ticket{
-    width:100%;max-width:360px;
-    background: var(--paper);
-    color:var(--ink);
-    border-radius:22px;
-    padding:30px 28px 26px;
-    text-align:center;
-    box-shadow: 0 20px 45px -22px rgba(11,30,61,0.18), 0 0 0 1px var(--line);
-  }
-  .ticket-row-top{
-    display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:18px;
-  }
-  .ticket-row-top::before, .ticket-row-top::after{
-    content:"";flex:1;height:1px;background:var(--line);
-  }
-  .ticket-label{font-size:13px;font-weight:600;color:rgba(11,30,61,0.6);white-space:nowrap;}
-  .token-num{
-    font-family:'Archivo Black', sans-serif;
-    font-size:56px;line-height:1;letter-spacing:-0.01em;margin:4px 0 20px;
-    color:var(--ink);
-  }
-  .perf{border-top:1px dashed rgba(11,30,61,0.18);margin:0 -6px 20px;}
-  .remaining-label{font-size:13px;font-weight:600;color:rgba(11,30,61,0.6);margin-bottom:8px;}
-  #countdown{
-    font-family:'Archivo Black', sans-serif;font-size:46px;letter-spacing:0.02em;
-    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .countdown-unit{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);font-weight:600;margin:6px 0 20px;}
-  .ticket-mid{
-    background:rgba(31,191,168,0.08);border-radius:14px;padding:14px 16px;
-    display:flex;align-items:center;gap:12px;text-align:left;
-  }
-  .ticket-mid .glyph-dot{width:34px;height:34px;border-radius:50%;background:rgba(31,191,168,0.16);display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:15px;flex-shrink:0;}
-  .ticket-mid .num{font-size:14px;}
-  .ticket-mid .num b{font-family:'Archivo Black';font-size:18px;color:var(--teal);}
-  .ticket-mid .lbl{font-size:12px;color:rgba(11,30,61,0.55);margin-top:1px;}
-
-  .besttime{
-    background:rgba(31,191,168,0.07);border-radius:16px;padding:18px 18px;
-    display:flex;align-items:center;gap:14px;margin-top:18px;text-align:left;
-  }
-  .besttime .star{width:38px;height:38px;border-radius:50%;background:rgba(31,191,168,0.16);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
-  .besttime .bt-title{font-size:13px;font-weight:700;color:var(--teal);margin-bottom:2px;}
-  .besttime .bt-time{font-size:14px;font-weight:600;}
-  .besttime .bt-sub{font-size:12px;color:rgba(11,30,61,0.5);margin-top:1px;}
-
-  .pill-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px;}
-  .pill{
-    border:none;border-radius:12px;padding:12px 8px;font-size:12.5px;font-weight:700;
-    cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:5px;
-  }
-  .pill-teal{background:var(--teal);color:#fff;}
-  .pill-teal:hover{filter:brightness(1.06);}
-  .pill-blue{background:rgba(46,111,224,0.10);color:var(--blue);}
-  .pill-blue:hover{background:rgba(46,111,224,0.16);}
-  .pill-pink{background:rgba(225,72,72,0.10);color:#D24B4B;}
-  .pill-pink:hover{background:rgba(225,72,72,0.16);}
-
-  .stat-row{display:flex;gap:28px;margin-top:8px;flex-wrap:wrap;}
-  .stat-row .s{min-width:90px;}
-  .stat-row .s b{display:block;font-family:'Archivo Black';font-size:28px;color:var(--blue);}
-  .stat-row .s span{font-size:12.5px;color:rgba(11,30,61,0.55);}
-  .cta-row{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
-  .btn{
-    border:none;border-radius:4px;padding:13px 22px;font-weight:600;font-size:14.5px;
-    cursor:pointer;font-family:inherit;
-  }
-  .btn-primary{background:var(--grad);color:#fff;}
-  .btn-primary:hover{filter:brightness(1.08);}
-  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
-  .btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
-
-  /* SECTION */
-  section{padding:64px 24px;border-top:1px solid var(--line);}
-  .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:34px;gap:20px;flex-wrap:wrap;}
-  .section-head .tag{font-family:'IBM Plex Mono';font-size:12px;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;}
-  .section-head h2{font-family:'Archivo Black';font-size:clamp(22px,3vw,30px);margin:6px 0 0;}
-  .section-head p{max-width:380px;font-size:14.5px;color:rgba(11,30,61,0.55);margin:0;}
-
-  /* HOW IT WORKS */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-  @media (max-width:900px){.steps{grid-template-columns:1fr 1fr;}}
-  @media (max-width:560px){.steps{grid-template-columns:1fr;}}
-  .step{background:var(--paper);border-radius:8px;padding:22px 20px;position:relative;box-shadow:0 1px 0 var(--line), 0 12px 24px -18px rgba(11,30,61,0.25);}
-  .step .n{font-family:'IBM Plex Mono';color:var(--blue);font-size:13px;margin-bottom:14px;}
-  .step h3{margin:0 0 8px;font-size:16px;}
-  .step p{margin:0;font-size:13.5px;line-height:1.55;color:rgba(11,30,61,0.6);}
-
-  /* QUEUE SPEED */
-  .panel{background:var(--paper);border-radius:10px;padding:28px;box-shadow:0 1px 0 var(--line), 0 14px 30px -20px rgba(11,30,61,0.22);}
-  .panel-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;}
-  @media (max-width:840px){.panel-grid{grid-template-columns:1fr;}}
-  svg#speedChart{width:100%;height:180px;}
-  .legend{display:flex;gap:18px;margin-top:10px;font-size:12px;color:rgba(11,30,61,0.55);}
-  .legend span{display:inline-flex;align-items:center;gap:6px;}
-  .legend i{width:10px;height:10px;border-radius:50%;display:inline-block;}
-
-  .alert-feed{display:flex;flex-direction:column;gap:10px;}
-  .alert{
-    display:flex;gap:12px;align-items:flex-start;
-    background:var(--surface-2);border-radius:6px;padding:12px 14px;font-size:13.5px;
-    opacity:0;transform:translateY(6px);animation:rise 0.5s ease forwards;
-  }
-  .alert .ic{font-family:'IBM Plex Mono';font-size:11px;color:var(--purple);min-width:48px;}
-  @keyframes rise{to{opacity:1;transform:translateY(0);}}
-
-  /* ACCESSIBILITY */
-  .access-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  @media (max-width:840px){.access-grid{grid-template-columns:1fr;}}
-  .access-card{background:var(--paper);border-radius:8px;padding:24px;box-shadow:0 1px 0 var(--line), 0 12px 24px -18px rgba(11,30,61,0.25);}
-  .access-card .glyph{font-family:'IBM Plex Mono';font-size:12px;color:var(--teal);margin-bottom:14px;letter-spacing:0.08em;text-transform:uppercase;}
-  .access-card h3{margin:0 0 10px;font-size:16px;}
-  .access-card p{margin:0;font-size:13.5px;color:rgba(11,30,61,0.6);line-height:1.55;}
-
-  /* IMPACT */
-  .impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left;}
-  @media (max-width:840px){.impact-grid{grid-template-columns:1fr 1fr;}}
-  .impact b{
-    display:block;font-family:'Archivo Black';font-size:clamp(30px,4vw,42px);
-    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .impact span{font-size:13px;color:rgba(11,30,61,0.55);}
-
-  footer{padding:36px 24px 50px;border-top:1px solid var(--line);font-size:13px;color:rgba(11,30,61,0.45);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-
-  /* MOBILE MENU */
-  .menu-btn{
-    display:none;flex-direction:column;justify-content:center;gap:4px;
-    width:34px;height:34px;border:none;background:transparent;cursor:pointer;padding:0;
-  }
-  .menu-btn span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;}
-  
-  @media (max-width:768px){
-    .menu-btn{display:flex;}
-    nav .links{display:none;}
-  }
-
-  .scrim{
-    position:fixed;inset:0;background:rgba(11,30,61,0.35);
-    opacity:0;pointer-events:none;transition:opacity 0.25s ease;z-index:40;
-  }
-  .scrim.open{opacity:1;pointer-events:auto;}
-  .drawer{
-    position:fixed;top:0;right:0;height:100%;width:280px;max-width:82vw;
-    background:var(--paper);box-shadow:-12px 0 30px -10px rgba(11,30,61,0.3);
-    transform:translateX(100%);transition:transform 0.3s ease;z-index:50;
-    display:flex;flex-direction:column;padding:24px 22px;
-  }
-  .drawer.open{transform:translateX(0);}
-  .drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
-  .drawer-close{border:none;background:transparent;font-size:20px;cursor:pointer;color:var(--ink);}
-
-  /* CANCELLED STATE */
-  .ticket.cancelled .token-num,
-  .ticket.cancelled .perf,
-  .ticket.cancelled .remaining-label,
-  .ticket.cancelled #countdown,
-  .ticket.cancelled .countdown-unit,
-  .ticket.cancelled .ticket-mid{ display:none; }
-  .cancelled-state{display:none;padding:18px 6px 4px;text-align:center;}
-  .ticket.cancelled .cancelled-state{display:block;}
-  .cancelled-state .ic{width:52px;height:52px;border-radius:50%;background:rgba(225,72,72,0.12);color:#D24B4B;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;}
-  .cancelled-state h3{color:#D24B4B;font-size:18px;margin-bottom:6px;}
-  .cancelled-state p{font-size:13px;color:rgba(11,30,61,0.55);}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Queue Buddy - Enterprise Queue Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="brand">
-    <svg class="brand-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="4" width="24" height="24" rx="6" fill="url(#grad)"/>
-      <defs>
-        <linearGradient id="grad" x1="0" y1="0" x2="32" y2="32">
-          <stop offset="0%" stop-color="#1FBFA8"/>
-          <stop offset="55%" stop-color="#2E6FE0"/>
-          <stop offset="100%" stop-color="#7B3FE4"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    Smart Queue Buddy
-  </div>
-  <div class="links">
-    <a href="#how">How It Works</a>
-    <a href="#features">Features</a>
-    <a href="#impact">Impact</a>
-  </div>
-  <button class="menu-btn" id="menuBtn">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-</nav>
-
-<!-- MOBILE MENU -->
-<div class="scrim" id="scrim"></div>
-<div class="drawer" id="drawer">
-  <div class="drawer-head">
-    <span style="font-weight:700;">Menu</span>
-    <button class="drawer-close" id="drawerClose">✕</button>
-  </div>
-  <nav style="display:flex;flex-direction:column;gap:8px;">
-    <a href="#how" style="padding:8px;color:var(--ink);">How It Works</a>
-    <a href="#features" style="padding:8px;color:var(--ink);">Features</a>
-    <a href="#impact" style="padding:8px;color:var(--ink);">Impact</a>
-  </nav>
-</div>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="wrap">
-    <p class="eyebrow">The Future of Waiting</p>
-    <h1>Never waste time in <em>long queues</em> again</h1>
-    <p class="lede">Smart Queue Buddy predicts wait times and finds the perfect moment to visit any location. Know before you go.</p>
-    
-    <div class="hero-grid">
-      <div>
-        <div class="stat-row">
-          <div class="s">
-            <b>2.5M+</b>
-            <span>waits tracked</span>
-          </div>
-          <div class="s">
-            <b>87%</b>
-            <span>accuracy rate</span>
-          </div>
-        </div>
-        <div class="cta-row">
-          <button class="btn btn-primary">Get Started Free</button>
-          <button class="btn btn-ghost">Watch Demo</button>
-        </div>
-      </div>
-
-      <div class="ticket-stage">
-        <div class="ticket">
-          <div class="ticket-row-top">
-            <span class="ticket-label">Your Token</span>
-          </div>
-          <div class="token-num">047</div>
-          <div class="perf"></div>
-          <div class="remaining-label">Estimated Wait</div>
-          <div id="countdown">12:34</div>
-          <div class="countdown-unit">Minutes</div>
-          
-          <div class="ticket-mid">
-            <div class="glyph-dot">📍</div>
-            <div>
-              <div class="num">Position: <b>15</b> ahead</div>
-              <div class="lbl">Moving quickly</div>
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-dark bg-primary navbar-expand-lg sticky-top shadow-sm">
+        <div class="container-fluid">
+            <div class="navbar-brand d-flex align-items-center gap-2">
+                <svg class="logo" viewBox="0 0 40 40" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#14B8A6;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Circle Ring -->
+                    <circle cx="20" cy="20" r="18" fill="none" stroke="url(#logoGradient)" stroke-width="2.5"/>
+                    <!-- Clock -->
+                    <circle cx="20" cy="20" r="12" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+                    <line x1="20" y1="14" x2="20" y2="20" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="20" y1="20" x2="24" y2="20" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+                    <!-- Queue People -->
+                    <circle cx="14" cy="24" r="2.5" fill="#FFFFFF"/>
+                    <circle cx="20" cy="25" r="2.5" fill="#FFFFFF"/>
+                    <circle cx="26" cy="24" r="2.5" fill="#FFFFFF"/>
+                    <!-- AI Circuit Lines -->
+                    <path d="M 28 8 L 32 8 L 32 12" stroke="url(#logoGradient)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <circle cx="32" cy="12" r="1.5" fill="url(#logoGradient)"/>
+                    <line x1="32" y1="12" x2="35" y2="15" stroke="url(#logoGradient)" stroke-width="1" stroke-dasharray="2,2"/>
+                    <!-- Checkmark -->
+                    <path d="M 12 12 L 14 14 L 18 10" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>
+                    <div class="fw-bold">Smart Queue Buddy</div>
+                    <small class="text-light opacity-75">AI Powered Queue Intelligence</small>
+                </div>
             </div>
-          </div>
 
-          <div class="besttime">
-            <div class="star">✨</div>
-            <div>
-              <div class="bt-title">Best Time to Visit</div>
-              <div class="bt-time">Tuesday 2-3 PM</div>
-              <div class="bt-sub">Average 3 min wait</div>
+            <div class="navbar-collapse justify-content-center" id="navbarNav">
+                <div class="text-center text-white">
+                    <div class="small opacity-75">Organization</div>
+                    <div class="fw-bold">National Central Bank</div>
+                    <div class="small opacity-75">Branch: Downtown | Service: General Banking</div>
+                </div>
             </div>
-          </div>
 
-          <div class="pill-row">
-            <button class="pill pill-teal">Check Now</button>
-            <button class="pill pill-blue">Share</button>
-            <button class="pill pill-pink">Notify Me</button>
-          </div>
-
-          <div class="cancelled-state">
-            <div class="ic">✕</div>
-            <h3>Queue Closed</h3>
-            <p>This location is currently closed</p>
-          </div>
+            <div class="d-flex align-items-center gap-3 ms-auto">
+                <div class="text-white text-end">
+                    <div id="current-date" class="small"></div>
+                    <div id="current-time" class="fw-bold"></div>
+                </div>
+                <button class="btn btn-light btn-sm" title="Help"><i class="bi bi-question-circle"></i></button>
+                <button class="btn btn-light btn-sm" id="logout-btn" title="Logout"><i class="bi bi-box-arrow-right"></i></button>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</header>
+    </nav>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <p class="tag">Process</p>
-        <h2>How It Works</h2>
-      </div>
-      <p>Simple steps to reclaim your time</p>
+    <div class="d-flex">
+        <!-- Left Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item active" data-menu="dashboard">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="menu-item" data-menu="queue-monitor">
+                    <i class="bi bi-diagram-2"></i>
+                    <span>Queue Monitor</span>
+                </a>
+                <a href="#" class="menu-item" data-menu="token-management">
+                    <i class="bi bi-ticket-perforated"></i>
+                    <span>Token Management</span>
+                </a>
+                <a href="#" class="menu-item" data-menu="ai-prediction">
+                    <i class="bi bi-robot"></i>
+                    <span>AI Prediction</span>
+                </a>
+                <a href="#" class="menu-item" data-menu="notifications">
+                    <i class="bi bi-bell"></i>
+                    <span>Notifications</span>
+                </a>
+                <a href="#" class="menu-item" data-menu="support">
+                    <i class="bi bi-headset"></i>
+                    <span>Support</span>
+                </a>
+                <a href="#" class="menu-item" data-menu="reports">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="menu-item" data-menu="settings">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <!-- Queue Overview KPIs -->
+                <div class="section-header">
+                    <h2>Queue Overview</h2>
+                </div>
+                <div class="kpi-grid">
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="color: #2563EB;"><i class="bi bi-ticket-detailed"></i></div>
+                        <div class="kpi-label">Current Token</div>
+                        <div class="kpi-value" id="current-token">B-1045</div>
+                        <div class="kpi-subtext">Service Window: 02:30 PM</div>
+                    </div>
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="color: #14B8A6;"><i class="bi bi-person-check"></i></div>
+                        <div class="kpi-label">Your Token</div>
+                        <div class="kpi-value" id="your-token">B-1052</div>
+                        <div class="kpi-subtext">Position: 7 in Queue</div>
+                    </div>
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="color: #F59E0B;"><i class="bi bi-hourglass-split"></i></div>
+                        <div class="kpi-label">Estimated Wait Time</div>
+                        <div class="kpi-value" id="wait-time">12 mins</div>
+                        <div class="kpi-subtext">Average: 1.5 min/customer</div>
+                    </div>
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="color: #22C55E;"><i class="bi bi-clock-history"></i></div>
+                        <div class="kpi-label">Best Arrival Time</div>
+                        <div class="kpi-value" id="best-arrival">02:45 PM</div>
+                        <div class="kpi-subtext">Recommended window</div>
+                    </div>
+                </div>
+
+                <!-- Queue Status Badge -->
+                <div class="mt-4">
+                    <div class="status-badge" id="queue-status">
+                        <span class="status-indicator" id="status-dot"></span>
+                        <span id="status-text">Queue Moving Normally</span>
+                    </div>
+                </div>
+
+                <!-- Live Queue Monitor -->
+                <div class="section-header mt-5">
+                    <h3>Live Queue Monitor</h3>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <div class="queue-progress">
+                            <div class="progress-step completed">
+                                <div class="step-circle">B-1040</div>
+                                <div class="step-label">Serving</div>
+                            </div>
+                            <div class="progress-arrow">→</div>
+                            <div class="progress-step active">
+                                <div class="step-circle">B-1041</div>
+                                <div class="step-label">Next</div>
+                            </div>
+                            <div class="progress-arrow">→</div>
+                            <div class="progress-step">
+                                <div class="step-circle">B-1042</div>
+                                <div class="step-label">+3</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <div class="stat-item">
+                                    <div class="stat-label">Total in Queue</div>
+                                    <div class="stat-value" id="queue-length">47</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stat-item">
+                                    <div class="stat-label">Counter Status</div>
+                                    <div class="stat-value"><span class="badge bg-success">3/4 Active</span></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stat-item">
+                                    <div class="stat-label">Avg Service Time</div>
+                                    <div class="stat-value">2.3 min</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Prediction Panel -->
+                <div class="section-header mt-5">
+                    <h3>AI Queue Prediction</h3>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="ai-metric">
+                                    <div class="ai-metric-icon"><i class="bi bi-hourglass-split"></i></div>
+                                    <div class="ai-metric-label">Est. Wait Time</div>
+                                    <div class="ai-metric-value">12 mins</div>
+                                    <div class="ai-confidence">Confidence: 94%</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="ai-metric">
+                                    <div class="ai-metric-icon"><i class="bi bi-speedometer"></i></div>
+                                    <div class="ai-metric-label">Queue Speed</div>
+                                    <div class="ai-metric-value">Normal</div>
+                                    <div class="ai-confidence">↑ 8% faster than avg</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="ai-metric">
+                                    <div class="ai-metric-icon"><i class="bi bi-graph-up"></i></div>
+                                    <div class="ai-metric-label">Peak Hours</div>
+                                    <div class="ai-metric-value">12-2 PM</div>
+                                    <div class="ai-confidence">Avoid if possible</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="ai-metric">
+                                    <div class="ai-metric-icon"><i class="bi bi-lightning"></i></div>
+                                    <div class="ai-metric-label">Service Efficiency</div>
+                                    <div class="ai-metric-value">87%</div>
+                                    <div class="ai-confidence">Above baseline</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Queue Timeline -->
+                <div class="section-header mt-5">
+                    <h3>Your Journey Timeline</h3>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <div class="timeline">
+                            <div class="timeline-item completed">
+                                <div class="timeline-marker"><i class="bi bi-check-circle-fill"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-label">Registered</div>
+                                    <div class="timeline-time">01:30 PM</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item completed">
+                                <div class="timeline-marker"><i class="bi bi-check-circle-fill"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-label">Predicted Arrival</div>
+                                    <div class="timeline-time">02:42 PM</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item active">
+                                <div class="timeline-marker"><i class="bi bi-hourglass-bottom"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-label">Recommended Arrival</div>
+                                    <div class="timeline-time">02:45 PM (in 8 mins)</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="bi bi-calendar-event"></i></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-label">Service Window</div>
+                                    <div class="timeline-time">02:45 PM - 03:00 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Token Management -->
+                <div class="section-header mt-5">
+                    <h3>Token Management</h3>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cancelModal">
+                                <i class="bi bi-trash"></i> Cancel Token
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="bi bi-arrow-repeat"></i> Reschedule Visit
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="bi bi-download"></i> Download Token
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="bi bi-printer"></i> Print Token
+                            </button>
+                            <button class="btn btn-secondary" id="qr-btn">
+                                <i class="bi bi-qr-code"></i> Generate QR Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification Preferences -->
+                <div class="section-header mt-5">
+                    <h3>Notification Preferences</h3>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="notification-toggle">
+                                    <label class="notification-item">
+                                        <input type="checkbox" checked>
+                                        <span class="notification-icon"><i class="bi bi-chat-dots"></i></span>
+                                        <span class="notification-text">
+                                            <span class="notification-title">SMS Notification</span>
+                                            <span class="notification-desc">Get updates via SMS</span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="notification-toggle">
+                                    <label class="notification-item">
+                                        <input type="checkbox" checked>
+                                        <span class="notification-icon"><i class="bi bi-envelope"></i></span>
+                                        <span class="notification-text">
+                                            <span class="notification-title">Email Notification</span>
+                                            <span class="notification-desc">Get updates via Email</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="notification-toggle">
+                                    <label class="notification-item">
+                                        <input type="checkbox" checked>
+                                        <span class="notification-icon"><i class="bi bi-whatsapp"></i></span>
+                                        <span class="notification-text">
+                                            <span class="notification-title">WhatsApp Notification</span>
+                                            <span class="notification-desc">Get updates via WhatsApp</span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="notification-toggle">
+                                    <label class="notification-item">
+                                        <input type="checkbox" checked>
+                                        <span class="notification-icon"><i class="bi bi-bell"></i></span>
+                                        <span class="notification-text">
+                                            <span class="notification-title">Browser Notification</span>
+                                            <span class="notification-desc">Get real-time browser alerts</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IVR Support -->
+                <div class="section-header mt-5">
+                    <h3>IVR Support Center</h3>
+                </div>
+                <div class="card glass border-0 ivr-card">
+                    <div class="card-body">
+                        <div class="ivr-header">
+                            <i class="bi bi-telephone-fill"></i>
+                            <div>
+                                <div class="ivr-title">Toll Free Support Line</div>
+                                <div class="ivr-number">1-800-QUEUE-911</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="ivr-menu">
+                            <div class="ivr-option">
+                                <span class="ivr-key">1</span>
+                                <span>Know Your Token Status</span>
+                            </div>
+                            <div class="ivr-option">
+                                <span class="ivr-key">2</span>
+                                <span>Check Waiting Time</span>
+                            </div>
+                            <div class="ivr-option">
+                                <span class="ivr-key">3</span>
+                                <span>Cancel Your Token</span>
+                            </div>
+                            <div class="ivr-option">
+                                <span class="ivr-key">4</span>
+                                <span>Connect to Operator</span>
+                            </div>
+                        </div>
+                        <small class="text-muted mt-3 d-block">💡 Supports all feature phones and smartphones. No internet required.</small>
+                    </div>
+                </div>
+
+                <!-- Smart Recommendations -->
+                <div class="section-header mt-5">
+                    <h3>Smart Recommendations</h3>
+                </div>
+                <div class="recommendations">
+                    <div class="recommendation-card success-card">
+                        <div class="recommendation-icon"><i class="bi bi-lightning-charge"></i></div>
+                        <div class="recommendation-content">
+                            <div class="recommendation-title">Queue Moving Faster!</div>
+                            <div class="recommendation-text">Queue is moving 8% faster than expected. Recommended arrival: <strong>02:42 PM</strong></div>
+                        </div>
+                    </div>
+                    <div class="recommendation-card warning-card">
+                        <div class="recommendation-icon"><i class="bi bi-exclamation-triangle"></i></div>
+                        <div class="recommendation-content">
+                            <div class="recommendation-title">Peak Hours Predicted</div>
+                            <div class="recommendation-text">Heavy congestion expected after 12 PM. Consider arriving before <strong>11:30 AM</strong> tomorrow.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Charts -->
+                <div class="section-header mt-5">
+                    <h3>Queue Analytics</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card glass border-0">
+                            <div class="card-body">
+                                <h5 class="mb-3">Queue Length Trend</h5>
+                                <canvas id="queueChart" height="80"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card glass border-0">
+                            <div class="card-body">
+                                <h5 class="mb-3">Waiting Time Analysis</h5>
+                                <canvas id="waitingChart" height="80"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulation Control -->
+                <div class="section-header mt-5">
+                    <h3>Queue Simulation</h3>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body text-center">
+                        <p class="text-muted">Start a live simulation to see the dashboard in action with animated queue progression.</p>
+                        <button class="btn btn-lg btn-primary" id="simulation-btn">
+                            <i class="bi bi-play-circle"></i> Start Queue Simulation
+                        </button>
+                        <div id="simulation-status" class="mt-3" style="display:none;">
+                            <div class="alert alert-info mb-0">
+                                <i class="bi bi-info-circle"></i> Simulation running... <span id="sim-time">0s</span>
+                                <button class="btn btn-sm btn-secondary ms-2" id="stop-simulation">
+                                    Stop Simulation
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy Panel -->
+                <div class="section-header mt-5">
+                    <h3>Privacy & Data Security</h3>
+                </div>
+                <div class="card glass border-0 privacy-card">
+                    <div class="card-body">
+                        <div class="privacy-header">
+                            <i class="bi bi-shield-check"></i>
+                            <h5>Privacy First</h5>
+                        </div>
+                        <ul class="privacy-list mt-3">
+                            <li><i class="bi bi-check"></i> Personal session data deleted after logout</li>
+                            <li><i class="bi bi-check"></i> Only anonymized operational analytics retained</li>
+                            <li><i class="bi bi-check"></i> End-to-end encryption for all communications</li>
+                            <li><i class="bi bi-check"></i> GDPR & local privacy laws compliant</li>
+                            <li><i class="bi bi-check"></i> No third-party data sharing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Queue Monitor Section -->
+            <section id="queue-monitor" class="content-section">
+                <div class="section-header">
+                    <h2>Real-Time Queue Monitor</h2>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <p class="text-muted">Live queue monitoring across all service counters with real-time status updates.</p>
+                        <div id="queue-monitor-content" style="min-height: 400px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Token Management Section -->
+            <section id="token-management" class="content-section">
+                <div class="section-header">
+                    <h2>Token Management</h2>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <p class="text-muted">Manage your tokens, reschedule visits, and download documentation.</p>
+                        <div id="token-management-content" style="min-height: 400px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Prediction Section -->
+            <section id="ai-prediction" class="content-section">
+                <div class="section-header">
+                    <h2>AI Queue Predictions</h2>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <p class="text-muted">Advanced AI-powered predictions for queue behavior and optimal arrival times.</p>
+                        <div id="ai-prediction-content" style="min-height: 400px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notifications Section -->
+            <section id="notifications" class="content-section">
+                <div class="section-header">
+                    <h2>Notifications</h2>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <p class="text-muted">View and manage all your notifications in one place.</p>
+                        <div id="notifications-content" style="min-height: 400px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support Section -->
+            <section id="support" class="content-section">
+                <div class="section-header">
+                    <h2>Customer Support</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card glass border-0 text-center support-card">
+                            <div class="card-body">
+                                <div class="support-icon"><i class="bi bi-telephone"></i></div>
+                                <h5>Helpline</h5>
+                                <p class="text-muted">1-800-QUEUE-911</p>
+                                <small>24/7 Support</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card glass border-0 text-center support-card">
+                            <div class="card-body">
+                                <div class="support-icon"><i class="bi bi-question-circle"></i></div>
+                                <h5>FAQs</h5>
+                                <p class="text-muted">Common Questions</p>
+                                <small>Browse Knowledge Base</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card glass border-0 text-center support-card">
+                            <div class="card-body">
+                                <div class="support-icon"><i class="bi bi-ticket"></i></div>
+                                <h5>Raise Ticket</h5>
+                                <p class="text-muted">Issue Tracking</p>
+                                <small>Get Support</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card glass border-0 text-center support-card">
+                            <div class="card-body">
+                                <div class="support-icon"><i class="bi bi-chat-dots"></i></div>
+                                <h5>Live Chat</h5>
+                                <p class="text-muted">Instant Support</p>
+                                <small>Talk to Agent</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="content-section">
+                <div class="section-header">
+                    <h2>Reports & Analytics</h2>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <p class="text-muted">Generate and view detailed reports on queue performance and analytics.</p>
+                        <div id="reports-content" style="min-height: 400px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <div class="section-header">
+                    <h2>Settings</h2>
+                </div>
+                <div class="card glass border-0">
+                    <div class="card-body">
+                        <p class="text-muted">Configure your preferences and account settings.</p>
+                        <div id="settings-content" style="min-height: 400px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h6>Smart Queue Buddy</h6>
+                        <p>Enterprise Queue Intelligence Software</p>
+                    </div>
+                    <div class="footer-section">
+                        <small>Integrated with Redrob Ecosystem</small>
+                    </div>
+                    <div class="footer-section text-end">
+                        <small>Version 1.0 • © 2026 Smart Queue Buddy</small>
+                    </div>
+                </div>
+            </footer>
+        </main>
     </div>
 
-    <div class="steps">
-      <div class="step">
-        <div class="n">01</div>
-        <h3>Pick a Place</h3>
-        <p>Search for restaurants, banks, DMV, hospitals, and more from our database.</p>
-      </div>
-      <div class="step">
-        <div class="n">02</div>
-        <h3>Get Your Number</h3>
-        <p>Virtual token assigned instantly. Check on your phone anytime, anywhere.</p>
-      </div>
-      <div class="step">
-        <div class="n">03</div>
-        <h3>Monitor Progress</h3>
-        <p>Real-time updates show how many people are ahead and estimated wait time.</p>
-      </div>
-      <div class="step">
-        <div class="n">04</div>
-        <h3>Get Notified</h3>
-        <p>Push notification alerts when it's your turn. Never miss your spot.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUEUE SPEED CHART -->
-<section id="features">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <p class="tag">Performance</p>
-        <h2>Queue Speed Analytics</h2>
-      </div>
-    </div>
-
-    <div class="panel">
-      <div class="panel-grid">
-        <div>
-          <svg id="speedChart" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-            <!-- Simplified chart -->
-            <polyline points="10,150 50,130 100,80 150,90 200,50 250,60 300,30 350,40 390,20" 
-                      fill="none" stroke="#1FBFA8" stroke-width="3" stroke-linecap="round"/>
-            <polyline points="10,160 50,150 100,120 150,130 200,100 250,110 300,90 350,100 390,80" 
-                      fill="none" stroke="#2E6FE0" stroke-width="3" stroke-linecap="round" stroke-dasharray="5,5"/>
-            <line x1="10" y1="170" x2="390" y2="170" stroke="#ccc" stroke-width="1"/>
-          </svg>
-          <div class="legend">
-            <span><i style="background:#1FBFA8;"></i>Your Wait</span>
-            <span><i style="background:#2E6FE0;"></i>Industry Avg</span>
-          </div>
+    <!-- Cancel Token Modal -->
+    <div class="modal fade" id="cancelModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content glass border-0">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Cancel Token</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to cancel your token <strong>B-1052</strong>?</p>
+                    <p class="text-muted">You can request a new token anytime. This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keep Token</button>
+                    <button type="button" class="btn btn-danger">Cancel Token</button>
+                </div>
+            </div>
         </div>
-        <div>
-          <div style="margin-bottom:20px;">
-            <h3 style="margin:0 0 8px;color:var(--ink);">Smart Predictions</h3>
-            <p style="font-size:14px;color:rgba(11,30,61,0.6);margin:0;">Our AI learns from millions of queue patterns to predict exact wait times.</p>
-          </div>
-          <div class="alert-feed">
-            <div class="alert">
-              <div class="ic">📊</div>
-              <div>
-                <strong>62% faster</strong><br/>
-                than traditional queues
-              </div>
-            </div>
-            <div class="alert">
-              <div class="ic">⏱️</div>
-              <div>
-                <strong>Real-time</strong><br/>
-                updated every 30 seconds
-              </div>
-            </div>
-            <div class="alert">
-              <div class="ic">🎯</div>
-              <div>
-                <strong>87% accuracy</strong><br/>
-                on wait predictions
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ACCESSIBILITY -->
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <p class="tag">Design</p>
-        <h2>Accessible to Everyone</h2>
-      </div>
     </div>
 
-    <div class="access-grid">
-      <div class="access-card">
-        <div class="glyph">♿ Inclusive</div>
-        <h3>Built for All</h3>
-        <p>WCAG 2.1 AAA compliant design ensures everyone can use Smart Queue Buddy.</p>
-      </div>
-      <div class="access-card">
-        <div class="glyph">🌍 Global</div>
-        <h3>Multi-language</h3>
-        <p>Available in 25+ languages with local time zones and cultural preferences.</p>
-      </div>
-      <div class="access-card">
-        <div class="glyph">📱 Responsive</div>
-        <h3>Any Device</h3>
-        <p>Works seamlessly on phones, tablets, and desktops with instant sync.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- IMPACT -->
-<section id="impact">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <p class="tag">Results</p>
-        <h2>Real Impact</h2>
-      </div>
-    </div>
-
-    <div class="impact-grid">
-      <div class="impact">
-        <b>847M+</b>
-        <span>hours saved</span>
-      </div>
-      <div class="impact">
-        <b>$2.3B</b>
-        <span>economic value</span>
-      </div>
-      <div class="impact">
-        <b>92%</b>
-        <span>user satisfaction</span>
-      </div>
-      <div class="impact">
-        <b>4.8★</b>
-        <span>app rating</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div>© 2024 Smart Queue Buddy. All rights reserved.</div>
-  <div style="display:flex;gap:20px;">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Contact</a>
-  </div>
-</footer>
-
-<script>
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('menuBtn');
-  const scrim = document.getElementById('scrim');
-  const drawer = document.getElementById('drawer');
-  const drawerClose = document.getElementById('drawerClose');
-
-  menuBtn.addEventListener('click', () => {
-    drawer.classList.add('open');
-    scrim.classList.add('open');
-  });
-
-  drawerClose.addEventListener('click', () => {
-    drawer.classList.remove('open');
-    scrim.classList.remove('open');
-  });
-
-  scrim.addEventListener('click', () => {
-    drawer.classList.remove('open');
-    scrim.classList.remove('open');
-  });
-
-  // Countdown timer
-  function updateCountdown() {
-    const countdown = document.getElementById('countdown');
-    let minutes = Math.floor(Math.random() * 20) + 1;
-    let seconds = Math.floor(Math.random() * 60);
-    countdown.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  // Smooth scrolling for links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-        drawer.classList.remove('open');
-        scrim.classList.remove('open');
-      }
-    });
-  });
-</script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
