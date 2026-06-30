@@ -509,7 +509,7 @@
                     </p>
 
                     <span class="badge bg-success">
-                        Recommended Arrival: 3:50 PM
+                        Recommended Arrival: <strong>3:50 PM</strong>
                     </span>
                 </div>
 
@@ -517,7 +517,7 @@
         </div>
     </div>
 
-    <!-- Peak Hours -->
+    <!-- Peak Hours Forecast -->
     <div class="col-md-6">
         <div class="card border-0 shadow-sm h-100 bg-warning bg-opacity-10">
             <div class="card-body d-flex">
@@ -543,7 +543,14 @@
         </div>
     </div>
 
-</div>
+    <!-- Predicted Waiting Time -->
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100 bg-primary bg-opacity-10">
+            <div class="card-body d-flex">
+
+                <div class="me-3">
+                    <i class="bi bi-clock-history text-primary fs-1"></i>
+                </div>
 
                 <div>
                     <h5 class="text-primary">Predicted Waiting Time</h5>
@@ -556,6 +563,40 @@
                     <span class="badge bg-primary">
                         Confidence: 96%
                     </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Suggestion -->
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100 bg-info bg-opacity-10">
+            <div class="card-body d-flex">
+
+                <div class="me-3">
+                    <i class="bi bi-cpu-fill text-info fs-1"></i>
+                </div>
+
+                <div>
+                    <h5 class="text-info">AI Suggestion</h5>
+
+                    <p class="mb-2">
+                        Opening one additional service counter is predicted to
+                        reduce average waiting time by <strong>25%</strong>.
+                    </p>
+
+                    <span class="badge bg-info text-dark">
+                        Operational Recommendation
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
                 </div>
 
             </div>
@@ -1631,67 +1672,7 @@
 
     </div>
 
-    <!-- Branch Performance -->
-    <div class="card shadow-sm border-0 mt-4">
-        <div class="card-body">
-
-            <h4 class="mb-4">
-                Branch Performance
-            </h4>
-
-            <table class="table table-hover align-middle">
-
-                <thead class="table-light">
-                    <tr>
-                        <th>Branch</th>
-                        <th>Customers</th>
-                        <th>Avg Wait</th>
-                        <th>Satisfaction</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>Main Branch</td>
-                        <td>482</td>
-                        <td>10 mins</td>
-                        <td>96%</td>
-                        <td><span class="badge bg-success">Excellent</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>North Branch</td>
-                        <td>351</td>
-                        <td>13 mins</td>
-                        <td>92%</td>
-                        <td><span class="badge bg-primary">Good</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>South Branch</td>
-                        <td>276</td>
-                        <td>15 mins</td>
-                        <td>90%</td>
-                        <td><span class="badge bg-warning text-dark">Moderate</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>East Branch</td>
-                        <td>175</td>
-                        <td>8 mins</td>
-                        <td>98%</td>
-                        <td><span class="badge bg-success">Excellent</span></td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-    </div>
-
+   
     <!-- AI Analytics -->
     <div class="card shadow-sm border-0 mt-4">
         <div class="card-body">
@@ -1735,38 +1716,9 @@
 
     <div class="row g-4">
 
-        <!-- Profile Settings -->
-        <div class="col-lg-6">
-            <div class="card shadow-sm border-0 h-100">
-                <div class="card-body">
+        
 
-                    <h5 class="mb-4">
-                        <i class="bi bi-person-circle text-primary me-2"></i>
-                        Profile Information
-                    </h5>
-
-                    <div class="mb-3">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control" value="John Doe">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" value="john@example.com">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Mobile Number</label>
-                        <input type="text" class="form-control" value="+91 98765 43210">
-                    </div>
-
-                    <button class="btn btn-primary">
-                        Save Changes
-                    </button>
-
-                </div>
-            </div>
-        </div>
+                
 
         <!-- Notification Settings -->
         <div class="col-lg-6">
@@ -1869,64 +1821,78 @@
 
         </div>
     </div>
+<!-- Session Preferences -->
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-body">
 
-    
+        <h5 class="mb-4">
+            <i class="bi bi-sliders text-secondary me-2"></i>
+            Session Preferences
+        </h5>
 
-    <!-- App Preferences -->
-    <div class="card shadow-sm border-0 mt-4">
-        <div class="card-body">
+        <p class="text-muted">
+            These settings apply only during your current session.
+        </p>
 
-            <h5 class="mb-4">
-                <i class="bi bi-gear-fill text-secondary me-2"></i>
-                Software Preferences
-            </h5>
+        <div class="row">
 
-            <div class="row">
-
-                <div class="col-md-6">
-
-                    <label class="form-label">
-                        Language
-                    </label>
-
-                    <select class="form-select">
-                        <option selected>English</option>
-                        <option>தமிழ்</option>
-                        <option>Hindi</option>
-                    </select>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <label class="form-label">
-                        Theme
-                    </label>
-
-                    <select class="form-select">
-                        <option selected>Light</option>
-                        <option>Dark</option>
-                        <option>System Default</option>
-                    </select>
-
-                </div>
-
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Preferred Language</label>
+                <select class="form-select">
+                    <option selected>English</option>
+                    <option>தமிழ்</option>
+                    <option>Hindi</option>
+                </select>
             </div>
 
-            <hr>
-
-            <button class="btn btn-success">
-                Save Preferences
-            </button>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Display Theme</label>
+                <select class="form-select">
+                    <option selected>Light</option>
+                    <option>Dark</option>
+                    <option>System Default</option>
+                </select>
+            </div>
 
         </div>
+
+        <div class="form-check form-switch mt-3">
+            <input class="form-check-input" type="checkbox" id="queueAlerts" checked>
+            <label class="form-check-label" for="queueAlerts">
+                Enable Queue Notifications
+            </label>
+        </div>
+
+        <div class="form-check form-switch mt-2">
+            <input class="form-check-input" type="checkbox" id="highContrast">
+            <label class="form-check-label" for="highContrast">
+                High Contrast Mode
+            </label>
+        </div>
+
+        <hr>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+                Preferences are cleared after logout.
+            </small>
+
+            <button class="btn btn-primary">
+                Apply Preferences
+            </button>
+        </div>
+
     </div>
+</div>
 
 </div>
-                    </div>
-                </div>
-            </section>
+</div>
+</div>
+</section>
+    
 
+
+   
             <!-- Footer -->
             <footer class="footer">
                 <div class="footer-content">
