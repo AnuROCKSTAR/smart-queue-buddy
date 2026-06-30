@@ -1,4 +1,4 @@
-# Smart Queue Buddy – Enterprise Queue Intelligence Software
+# Smart Queue Buddy – Queue Intelligence Software
 
 ## Tagline
 
