@@ -484,25 +484,152 @@
                 </div>
 
                 <!-- Smart Recommendations -->
-                <div class="section-header mt-5">
-                    <h3>Smart Recommendations</h3>
+<!-- AI Smart Recommendations -->
+<div class="section-header mt-5">
+    <h3>AI Smart Recommendations</h3>
+</div>
+
+<div class="row g-4">
+
+    <!-- Queue Moving Faster -->
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100 bg-success bg-opacity-10">
+            <div class="card-body d-flex">
+
+                <div class="me-3">
+                    <i class="bi bi-lightning-charge-fill text-success fs-1"></i>
                 </div>
-                <div class="recommendations">
-                    <div class="recommendation-card success-card">
-                        <div class="recommendation-icon"><i class="bi bi-lightning-charge"></i></div>
-                        <div class="recommendation-content">
-                            <div class="recommendation-title">Queue Moving Faster!</div>
-                            <div class="recommendation-text">Queue is moving 8% faster than expected. Recommended arrival: <strong>3:50 PM</strong></div>
-                        </div>
-                    </div>
-                    <div class="recommendation-card warning-card">
-                        <div class="recommendation-icon"><i class="bi bi-exclamation-triangle"></i></div>
-                        <div class="recommendation-content">
-                            <div class="recommendation-title">Peak Hours Predicted</div>
-                            <div class="recommendation-text">Heavy congestion expected before 12 PM. Consider arriving after <strong>9:30 AM</strong> tomorrow.</div>
-                        </div>
-                    </div>
+
+                <div>
+                    <h5 class="text-success">Queue Moving Faster</h5>
+
+                    <p class="mb-2">
+                        AI predicts that the queue is moving
+                        <strong>8% faster</strong> than expected.
+                    </p>
+
+                    <span class="badge bg-success">
+                        Recommended Arrival: <strong>3:50 PM</strong>
+                    </span>
                 </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Peak Hours Forecast -->
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100 bg-warning bg-opacity-10">
+            <div class="card-body d-flex">
+
+                <div class="me-3">
+                    <i class="bi bi-graph-up-arrow text-warning fs-1"></i>
+                </div>
+
+                <div>
+                    <h5 class="text-warning">Peak Hours Forecast</h5>
+
+                    <p class="mb-2">
+                        High customer traffic is expected between
+                        <strong>11:00 AM – 1:00 PM</strong>.
+                    </p>
+
+                    <span class="badge bg-warning text-dark">
+                        Best Time to Visit: 2:30 PM – 4:00 PM
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Predicted Waiting Time -->
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100 bg-primary bg-opacity-10">
+            <div class="card-body d-flex">
+
+                <div class="me-3">
+                    <i class="bi bi-clock-history text-primary fs-1"></i>
+                </div>
+
+                <div>
+                    <h5 class="text-primary">Predicted Waiting Time</h5>
+
+                    <p class="mb-2">
+                        Your estimated waiting time is
+                        <strong>12 minutes</strong> based on current queue conditions.
+                    </p>
+
+                    <span class="badge bg-primary">
+                        Confidence: 96%
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Suggestion -->
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100 bg-info bg-opacity-10">
+            <div class="card-body d-flex">
+
+                <div class="me-3">
+                    <i class="bi bi-cpu-fill text-info fs-1"></i>
+                </div>
+
+                <div>
+                    <h5 class="text-info">AI Suggestion</h5>
+
+                    <p class="mb-2">
+                        Opening one additional service counter is predicted to
+                        reduce average waiting time by <strong>25%</strong>.
+                    </p>
+
+                    <span class="badge bg-info text-dark">
+                        Operational Recommendation
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommendation 4 -->
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100 bg-info bg-opacity-10">
+            <div class="card-body d-flex">
+
+                <div class="me-3">
+                    <i class="bi bi-cpu-fill text-info fs-1"></i>
+                </div>
+
+                <div>
+                    <h5 class="text-info">AI Suggestion</h5>
+
+                    <p class="mb-2">
+                        Opening one additional service counter is predicted to reduce
+                        average waiting time by <strong>25%</strong>.
+                    </p>
+
+                    <span class="badge bg-info text-dark">
+                        Operational Recommendation
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
 
                 <!-- Analytics Charts -->
                 <div class="section-header mt-5">
@@ -528,46 +655,261 @@
                 </div>
 
                 <!-- Simulation Control -->
-                <div class="section-header mt-5">
-                    <h3>Queue Simulation</h3>
+                <!-- Queue Simulation -->
+<div class="section-header mt-5">
+    <h3>AI Queue Simulation</h3>
+</div>
+
+<div class="card glass border-0">
+    <div class="card-body text-center">
+
+        <i class="bi bi-cpu-fill text-primary" style="font-size:60px;"></i>
+
+        <h4 class="mt-3">
+            AI Queue Simulation Engine
+        </h4>
+
+        <p class="text-muted">
+            Simulate real-time customer arrivals, queue movement,
+            wait time prediction and AI-powered counter allocation.
+        </p>
+
+        <div class="row mt-4 text-center">
+
+            <div class="col-md-3">
+                <h2 class="text-primary" id="sim-customers">0</h2>
+                <small>Customers Arrived</small>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="text-warning" id="sim-wait">0 min</h2>
+                <small>Average Wait</small>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="text-success" id="sim-served">0</h2>
+                <small>Customers Served</small>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="text-danger" id="sim-queue">0</h2>
+                <small>Queue Length</small>
+            </div>
+
+        </div>
+
+        <div class="mt-4">
+
+            <button class="btn btn-success btn-lg me-2"
+                    id="simulation-btn">
+                <i class="bi bi-play-fill"></i>
+                Start Simulation
+            </button>
+
+            <button class="btn btn-danger btn-lg"
+                    id="stop-simulation">
+                <i class="bi bi-stop-fill"></i>
+                Stop
+            </button>
+
+        </div>
+
+        <div id="simulation-status" class="mt-4" style="display:none;">
+
+            <div class="alert alert-primary">
+
+                <h5>
+                    <i class="bi bi-activity"></i>
+                    AI Simulation Running
+                </h5>
+
+                <p class="mb-2">
+                    Elapsed Time:
+                    <strong id="sim-time">0 sec</strong>
+                </p>
+
+                <div class="progress" style="height:22px;">
+
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                         style="width:0%;"
+                         id="simulation-progress">
+
+                        0%
+
+                    </div>
+
                 </div>
-                <div class="card glass border-0">
-                    <div class="card-body text-center">
-                        <p class="text-muted">Start a live simulation to see the dashboard in action with animated queue progression.</p>
-                        <button class="btn btn-lg btn-primary" id="simulation-btn">
-                            <i class="bi bi-play-circle"></i> Start Queue Simulation
-                        </button>
-                        <div id="simulation-status" class="mt-3" style="display:none;">
-                            <div class="alert alert-info mb-0">
-                                <i class="bi bi-info-circle"></i> Simulation running... <span id="sim-time">0s</span>
-                                <button class="btn btn-sm btn-secondary ms-2" id="stop-simulation">
-                                    Stop Simulation
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Privacy Panel -->
-                <div class="section-header mt-5">
-                    <h3>Privacy & Data Security</h3>
+                <!-- Privacy & Security -->
+<div class="section-header mt-5">
+    <h3>Privacy & Data Security</h3>
+</div>
+
+<div class="card glass border-0">
+    <div class="card-body">
+
+        <div class="text-center mb-4">
+
+            <i class="bi bi-shield-lock-fill text-success"
+               style="font-size:60px;"></i>
+
+            <h4 class="mt-3">
+                Enterprise Security Dashboard
+            </h4>
+
+            <p class="text-muted">
+                Smart Queue Buddy protects customer information using
+                enterprise-grade security, privacy controls and responsible AI practices.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="alert alert-success">
+
+                    <h5>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Security Features
+                    </h5>
+
+                    <ul class="mb-0">
+
+                        <li>End-to-end encrypted communication</li>
+
+                        <li>Secure token generation</li>
+
+                        <li>Multi-factor authentication support</li>
+
+                        <li>Role-based access control</li>
+
+                        <li>Automatic session timeout</li>
+
+                    </ul>
+
                 </div>
-                <div class="card glass border-0 privacy-card">
-                    <div class="card-body">
-                        <div class="privacy-header">
-                            <i class="bi bi-shield-check"></i>
-                            <h5>Privacy First</h5>
-                        </div>
-                        <ul class="privacy-list mt-3">
-                            <li><i class="bi bi-check"></i> Personal session data deleted after logout</li>
-                            <li><i class="bi bi-check"></i> Only anonymized operational analytics retained</li>
-                            <li><i class="bi bi-check"></i> End-to-end encryption for all communications</li>
-                            <li><i class="bi bi-check"></i> GDPR & local privacy laws compliant</li>
-                            <li><i class="bi bi-check"></i> No third-party data sharing</li>
-                        </ul>
-                    </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="alert alert-primary">
+
+                    <h5>
+                        <i class="bi bi-shield-check"></i>
+                        Privacy Protection
+                    </h5>
+
+                    <ul class="mb-0">
+
+                        <li>Customer data anonymization</li>
+
+                        <li>Minimal personal data collection</li>
+
+                        <li>Secure cloud storage</li>
+
+                        <li>No third-party data sharing</li>
+
+                        <li>Automatic data deletion after logout</li>
+
+                    </ul>
+
                 </div>
-            </section>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h5 class="mb-3">
+            Compliance Status
+        </h5>
+
+        <div class="row text-center">
+
+            <div class="col-md-3">
+
+                <i class="bi bi-patch-check-fill text-success fs-1"></i>
+
+                <h5 class="mt-2">AES-256</h5>
+
+                <small class="text-muted">
+                    Data Encryption
+                </small>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <i class="bi bi-fingerprint text-primary fs-1"></i>
+
+                <h5 class="mt-2">MFA</h5>
+
+                <small class="text-muted">
+                    Secure Login
+                </small>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <i class="bi bi-cloud-check-fill text-info fs-1"></i>
+
+                <h5 class="mt-2">99.9%</h5>
+
+                <small class="text-muted">
+                    Secure Uptime
+                </small>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <i class="bi bi-award-fill text-warning fs-1"></i>
+
+                <h5 class="mt-2">Compliant</h5>
+
+                <small class="text-muted">
+                    GDPR & Local Standards
+                </small>
+
+            </div>
+
+        </div>
+
+        <div class="alert alert-light border mt-4">
+
+            <h5>
+                <i class="bi bi-cpu-fill text-primary"></i>
+                Responsible AI
+            </h5>
+
+            <p class="mb-0">
+                AI predictions are generated using anonymized queue patterns,
+                historical service data and real-time occupancy metrics.
+                Personally identifiable customer information is not used to
+                train or improve prediction models.
+            </p>
+
+        </div>
+
+    </div>
+</div>
 
             <!-- Queue Monitor Section -->
             <section id="queue-monitor" class="content-section">
@@ -937,7 +1279,7 @@
             <div class="alert alert-info">
                 <strong>Best Time to Visit</strong><br>
                 Recommended arrival window:
-                <strong>2:30 PM – 4:00 PM</strong>
+                <strong>02:45-4:30 PM</strong>
                 for minimum waiting time.
             </div>
 
@@ -1265,7 +1607,7 @@
             <div class="card shadow-sm border-0 text-center h-100">
                 <div class="card-body">
                     <i class="bi bi-people-fill fs-1 text-primary"></i>
-                    <h3 class="mt-3">1,284</h3>
+                    <h3 class="mt-3">2,000</h3>
                     <p class="text-muted mb-0">Customers Served</p>
                 </div>
             </div>
@@ -1479,8 +1821,76 @@
 
         </div>
     </div>
+<!-- Session Preferences -->
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-body">
 
+        <h5 class="mb-4">
+            <i class="bi bi-sliders text-secondary me-2"></i>
+            Session Preferences
+        </h5>
+
+        <p class="text-muted">
+            These settings apply only during your current session.
+        </p>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Preferred Language</label>
+                <select class="form-select">
+                    <option selected>English</option>
+                    <option>தமிழ்</option>
+                    <option>Hindi</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Display Theme</label>
+                <select class="form-select">
+                    <option selected>Light</option>
+                    <option>Dark</option>
+                    <option>System Default</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-check form-switch mt-3">
+            <input class="form-check-input" type="checkbox" id="queueAlerts" checked>
+            <label class="form-check-label" for="queueAlerts">
+                Enable Queue Notifications
+            </label>
+        </div>
+
+        <div class="form-check form-switch mt-2">
+            <input class="form-check-input" type="checkbox" id="highContrast">
+            <label class="form-check-label" for="highContrast">
+                High Contrast Mode
+            </label>
+        </div>
+
+        <hr>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+                Preferences are cleared after logout.
+            </small>
+
+            <button class="btn btn-primary">
+                Apply Preferences
+            </button>
+        </div>
+
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
     
+
 
    
             <!-- Footer -->
