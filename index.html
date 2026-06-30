@@ -593,8 +593,7 @@
                     </div>
                 </div>
 
-                <!-- Simulation Control -->
-                <!-- Queue Simulation -->
+              <!-- Queue Simulation -->
 <div class="section-header mt-5">
     <h3>AI Queue Simulation</h3>
 </div>
@@ -604,34 +603,32 @@
 
         <i class="bi bi-cpu-fill text-primary" style="font-size:60px;"></i>
 
-        <h4 class="mt-3">
-            AI Queue Simulation Engine
-        </h4>
+        <h4 class="mt-3">AI Queue Simulation Engine</h4>
 
         <p class="text-muted">
             Simulate real-time customer arrivals, queue movement,
             wait time prediction and AI-powered counter allocation.
         </p>
 
-        <div class="row mt-4 text-center">
+        <div class="row mt-4">
 
             <div class="col-md-3">
-                <h2 class="text-primary" id="sim-customers">0</h2>
+                <h2 id="sim-customers" class="text-primary">0</h2>
                 <small>Customers Arrived</small>
             </div>
 
             <div class="col-md-3">
-                <h2 class="text-warning" id="sim-wait">0 min</h2>
+                <h2 id="sim-wait" class="text-warning">0 min</h2>
                 <small>Average Wait</small>
             </div>
 
             <div class="col-md-3">
-                <h2 class="text-success" id="sim-served">0</h2>
+                <h2 id="sim-served" class="text-success">0</h2>
                 <small>Customers Served</small>
             </div>
 
             <div class="col-md-3">
-                <h2 class="text-danger" id="sim-queue">0</h2>
+                <h2 id="sim-queue" class="text-danger">0</h2>
                 <small>Queue Length</small>
             </div>
 
@@ -639,44 +636,31 @@
 
         <div class="mt-4">
 
-            <button class="btn btn-success btn-lg me-2"
-                    id="simulation-btn">
+            <button class="btn btn-success btn-lg me-2" id="simulation-btn">
                 <i class="bi bi-play-fill"></i>
                 Start Simulation
             </button>
 
-            <button class="btn btn-danger btn-lg"
-                    id="stop-simulation">
+            <button class="btn btn-danger btn-lg" id="stop-simulation" disabled>
                 <i class="bi bi-stop-fill"></i>
                 Stop
             </button>
 
         </div>
 
-        <div id="simulation-status" class="mt-4" style="display:none;">
+        <div id="simulation-status" class="alert alert-info mt-4 d-none">
 
-            <div class="alert alert-primary">
+            <strong>Simulation Running</strong><br>
 
-                <h5>
-                    <i class="bi bi-activity"></i>
-                    AI Simulation Running
-                </h5>
+            Time:
+            <span id="sim-time">0 sec</span>
 
-                <p class="mb-2">
-                    Elapsed Time:
-                    <strong id="sim-time">0 sec</strong>
-                </p>
+            <div class="progress mt-3" style="height:22px;">
 
-                <div class="progress" style="height:22px;">
-
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                         style="width:0%;"
-                         id="simulation-progress">
-
-                        0%
-
-                    </div>
-
+                <div id="simulation-progress"
+                     class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                     style="width:0%">
+                    0%
                 </div>
 
             </div>
@@ -685,12 +669,7 @@
 
     </div>
 </div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Privacy Panel -->
                 <!-- Privacy & Security -->
 <div class="section-header mt-5">
     <h3>Privacy & Data Security</h3>
@@ -849,7 +828,6 @@
 
     </div>
 </div>
-
             <!-- Queue Monitor Section -->
             <section id="queue-monitor" class="content-section">
                 <div class="section-header">
@@ -1611,7 +1589,11 @@
 
     </div>
 
-   
+    
+                
+
+                    
+
     <!-- AI Analytics -->
     <div class="card shadow-sm border-0 mt-4">
         <div class="card-body">
@@ -1655,9 +1637,7 @@
 
     <div class="row g-4">
 
-        
-
-                
+       
 
         <!-- Notification Settings -->
         <div class="col-lg-6">
@@ -1764,56 +1744,76 @@
 <div class="card shadow-sm border-0 mt-4">
     <div class="card-body">
 
+   
+               
+
+   <!-- Session Preferences -->
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-body">
+
         <h5 class="mb-4">
             <i class="bi bi-sliders text-secondary me-2"></i>
             Session Preferences
         </h5>
 
         <p class="text-muted">
-            These settings apply only during your current session.
+            These preferences apply only to your current session and will be cleared after logout.
         </p>
 
         <div class="row">
 
+            <!-- Language -->
             <div class="col-md-6 mb-3">
-                <label class="form-label">Preferred Language</label>
+
+                <label class="form-label">
+                    Preferred Language
+                </label>
+
                 <select class="form-select">
                     <option selected>English</option>
                     <option>தமிழ்</option>
                     <option>Hindi</option>
                 </select>
+
             </div>
 
+            <!-- Theme -->
             <div class="col-md-6 mb-3">
-                <label class="form-label">Display Theme</label>
+
+                <label class="form-label">
+                    Display Theme
+                </label>
+
                 <select class="form-select">
                     <option selected>Light</option>
                     <option>Dark</option>
                     <option>System Default</option>
                 </select>
+
             </div>
 
         </div>
 
         <div class="form-check form-switch mt-3">
-            <input class="form-check-input" type="checkbox" id="queueAlerts" checked>
-            <label class="form-check-label" for="queueAlerts">
-                Enable Queue Notifications
-            </label>
-        </div>
-
-        <div class="form-check form-switch mt-2">
             <input class="form-check-input" type="checkbox" id="highContrast">
             <label class="form-check-label" for="highContrast">
                 High Contrast Mode
             </label>
         </div>
 
+        <div class="form-check form-switch mt-2">
+            <input class="form-check-input" type="checkbox" id="notifications" checked>
+            <label class="form-check-label" for="notifications">
+                Enable Queue Notifications
+            </label>
+        </div>
+
         <hr>
 
         <div class="d-flex justify-content-between align-items-center">
+
             <small class="text-muted">
-                Preferences are cleared after logout.
+                Preferences are valid only during this session.
             </small>
 
             <button class="btn btn-primary">
@@ -1823,13 +1823,6 @@
 
     </div>
 </div>
-
-</div>
-</div>
-</div>
-</section>
-    
-
 
    
             <!-- Footer -->
