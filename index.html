@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
     <nav class="navbar navbar-dark navbar-expand-lg sticky-top shadow-sm" style="background: linear-gradient(135deg, #14B8A6 0%, #6366F1 100%);">
         <div class="container-fluid">
             <div class="navbar-brand d-flex align-items-center gap-2">
-                <img src="assets/logo.svg" alt="Smart Queue Buddy Logo" class="logo" width="32" height="32">
+                
                 <div>
                     <div class="fw-bold">Smart Queue Buddy</div>
                     <small class="text-light opacity-75">AI That Gives Time Back</small>
@@ -25,8 +25,8 @@
             <div class="navbar-collapse justify-content-center" id="navbarNav">
                 <div class="text-center text-white">
                     <div class="small opacity-75">Organization</div>
-                    <div class="fw-bold">National Central Bank</div>
-                    <div class="small opacity-75">Branch: Downtown | Service: General Banking</div>
+                    <div class="fw-bold">State Bank of India</div>
+                    <div class="small opacity-75">Branch: K K Nagar | Service: General Banking</div>
                 </div>
             </div>
 
@@ -93,7 +93,7 @@
                         <div class="kpi-icon" style="color: #14B8A6;"><i class="bi bi-ticket-detailed"></i></div>
                         <div class="kpi-label">Current Token</div>
                         <div class="kpi-value" id="current-token">B-1045</div>
-                        <div class="kpi-subtext">Service Window: 02:30 PM</div>
+                        <div class="kpi-subtext">Service Window: 2:45 PM</div>
                     </div>
                     <div class="kpi-card glass">
                         <div class="kpi-icon" style="color: #6366F1;"><i class="bi bi-person-check"></i></div>
@@ -105,12 +105,12 @@
                         <div class="kpi-icon" style="color: #2563EB;"><i class="bi bi-hourglass-split"></i></div>
                         <div class="kpi-label">Estimated Wait Time</div>
                         <div class="kpi-value" id="wait-time">12 mins</div>
-                        <div class="kpi-subtext">Average: 1.5 min/customer</div>
+                        <div class="kpi-subtext">Average: 7 min/customer</div>
                     </div>
                     <div class="kpi-card glass">
                         <div class="kpi-icon" style="color: #22C55E;"><i class="bi bi-clock-history"></i></div>
                         <div class="kpi-label">Best Arrival Time</div>
-                        <div class="kpi-value" id="best-arrival">02:45 PM</div>
+                        <div class="kpi-value" id="best-arrival">03PM</div>
                         <div class="kpi-subtext">Recommended window</div>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                                     <div class="ai-metric-icon"><i class="bi bi-hourglass-split"></i></div>
                                     <div class="ai-metric-label">Est. Wait Time</div>
                                     <div class="ai-metric-value">12 mins</div>
-                                    <div class="ai-confidence">Confidence: 94%</div>
+                                    <div class="ai-confidence">Confidence: 80%</div>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -252,31 +252,146 @@
                 </div>
 
                 <!-- Token Management -->
-                <div class="section-header mt-5">
-                    <h3>Token Management</h3>
+                <!-- Token Management -->
+<div class="section-header mt-5">
+    <h3>Token Management</h3>
+</div>
+
+<div class="row g-4">
+
+    <!-- Active Token -->
+    <div class="col-lg-6">
+        <div class="card glass border-0 h-100">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="mb-0">Current Token</h4>
+                    <span class="badge bg-success">Active</span>
                 </div>
-                <div class="card glass border-0">
-                    <div class="card-body">
-                        <div class="d-flex flex-wrap gap-2">
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cancelModal">
-                                <i class="bi bi-trash"></i> Cancel Token
-                            </button>
-                            <button class="btn btn-secondary">
-                                <i class="bi bi-arrow-repeat"></i> Reschedule Visit
-                            </button>
-                            <button class="btn btn-secondary">
-                                <i class="bi bi-download"></i> Download Token
-                            </button>
-                            <button class="btn btn-secondary">
-                                <i class="bi bi-printer"></i> Print Token
-                            </button>
-                            <button class="btn btn-secondary" id="qr-btn">
-                                <i class="bi bi-qr-code"></i> Generate QR Code
-                            </button>
+
+                <div class="text-center my-4">
+                    <h1 class="display-3 text-primary fw-bold">A102</h1>
+                    <p class="text-muted">Account Opening</p>
+                </div>
+
+                <table class="table table-borderless">
+
+                    <tr>
+                        <td><strong>Branch</strong></td>
+                        <td>Main Branch</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Counter</strong></td>
+                        <td>Counter 2</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Estimated Time</strong></td>
+                        <td>10:45 AM</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>People Ahead</strong></td>
+                        <td>5</td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Queue Status -->
+    <div class="col-lg-6">
+        <div class="card glass border-0 h-100">
+            <div class="card-body">
+
+                <h4 class="mb-4">Live Queue Status</h4>
+
+                <div class="mb-4">
+                    <small>Queue Progress</small>
+
+                    <div class="progress" style="height:22px;">
+                        <div class="progress-bar bg-success"
+                             style="width:72%;">
+                            72%
                         </div>
                     </div>
                 </div>
 
+                <div class="row text-center">
+
+                    <div class="col-4">
+                        <h3 class="text-primary">12</h3>
+                        <small>Current Token</small>
+                    </div>
+
+                    <div class="col-4">
+                        <h3 class="text-warning">5</h3>
+                        <small>Before You</small>
+                    </div>
+
+                    <div class="col-4">
+                        <h3 class="text-success">14 min</h3>
+                        <small>Estimated Wait</small>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Quick Actions -->
+<div class="card glass border-0 mt-4">
+    <div class="card-body">
+
+        <h4 class="mb-4">
+            Quick Actions
+        </h4>
+
+        <div class="d-flex flex-wrap gap-3">
+
+            <button class="btn btn-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#cancelModal">
+                <i class="bi bi-trash"></i>
+                Cancel Token
+            </button>
+
+            <button class="btn btn-warning">
+                <i class="bi bi-arrow-repeat"></i>
+                Reschedule Visit
+            </button>
+
+            <button class="btn btn-success">
+                <i class="bi bi-download"></i>
+                Download Token
+            </button>
+
+            <button class="btn btn-info text-white">
+                <i class="bi bi-printer"></i>
+                Print Token
+            </button>
+
+            <button class="btn btn-primary" id="qr-btn">
+                <i class="bi bi-qr-code"></i>
+                Generate QR Code
+            </button>
+
+            <button class="btn btn-outline-secondary">
+                <i class="bi bi-share"></i>
+                Share Token
+            </button>
+
+        </div>
+
+    </div>
+</div>
+                       
                 <!-- Notification Preferences -->
                 <div class="section-header mt-5">
                     <h3>Notification Preferences</h3>
@@ -342,7 +457,7 @@
                             <i class="bi bi-telephone-fill"></i>
                             <div>
                                 <div class="ivr-title">Toll Free Support Line</div>
-                                <div class="ivr-number">1-800-49876-911</div>
+                               <div class="ivr-number">1-800-49876-911</div>
                             </div>
                         </div>
                         <hr>
@@ -362,7 +477,7 @@
                             <div class="ivr-option">
                                 <span class="ivr-key">4</span>
                                 <span>Connect to Operator</span>
-                            </div>
+                            </div> 
                         </div>
                         <small class="text-muted mt-3 d-block">💡 Supports all feature phones and smartphones. No internet required.</small>
                     </div>
@@ -384,7 +499,7 @@
                         <div class="recommendation-icon"><i class="bi bi-exclamation-triangle"></i></div>
                         <div class="recommendation-content">
                             <div class="recommendation-title">Peak Hours Predicted</div>
-                            <div class="recommendation-text">Heavy congestion expected after 12 PM. Consider arriving before <strong>11:30 AM</strong> tomorrow.</div>
+                            <div class="recommendation-text">Heavy congestion expected before 12 PM. Consider arriving after <strong>4:30 AM</strong> tomorrow.</div>
                         </div>
                     </div>
                 </div>
@@ -463,6 +578,114 @@
                     <div class="card-body">
                         <p class="text-muted">Live queue monitoring across all service counters with real-time status updates.</p>
                         <div id="queue-monitor-content" style="min-height: 400px;"></div>
+                        <div id="queue-monitor-content">
+    <div class="row g-4">
+
+        <!-- Counter 1 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Counter 1</h5>
+                    <span class="badge bg-success mb-3">Open</span>
+
+                    <h1 class="display-5 text-primary">A102</h1>
+                    <p class="text-muted mb-1">Now Serving</p>
+
+                    <hr>
+
+                    <h6>People Waiting</h6>
+                    <h3 class="text-warning">8</h3>
+
+                    <small class="text-muted">
+                        Avg Wait Time: <strong>12 mins</strong>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Counter 2 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Counter 2</h5>
+                    <span class="badge bg-success mb-3">Open</span>
+
+                    <h1 class="display-5 text-primary">B205</h1>
+                    <p class="text-muted mb-1">Now Serving</p>
+
+                    <hr>
+
+                    <h6>People Waiting</h6>
+                    <h3 class="text-warning">5</h3>
+
+                    <small class="text-muted">
+                        Avg Wait Time: <strong>8 mins</strong>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Counter 3 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Counter 3</h5>
+                    <span class="badge bg-danger mb-3">Busy</span>
+
+                    <h1 class="display-5 text-primary">C307</h1>
+                    <p class="text-muted mb-1">Now Serving</p>
+
+                    <hr>
+
+                    <h6>People Waiting</h6>
+                    <h3 class="text-danger">14</h3>
+
+                    <small class="text-muted">
+                        Avg Wait Time: <strong>21 mins</strong>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Queue Summary -->
+    <div class="card mt-4 shadow-sm border-0">
+        <div class="card-body">
+            <h5 class="mb-3">Overall Queue Status</h5>
+
+            <div class="progress mb-3" style="height:22px;">
+                <div class="progress-bar bg-success" style="width:65%;">
+                    Queue Capacity 65%
+                </div>
+            </div>
+
+            <div class="row text-center">
+
+                <div class="col-md-3">
+                    <h4 class="text-primary">27</h4>
+                    <small>Total Waiting</small>
+                </div>
+
+                <div class="col-md-3">
+                    <h4 class="text-success">18</h4>
+                    <small>Served Today</small>
+                </div>
+
+                <div class="col-md-3">
+                    <h4 class="text-warning">13 mins</h4>
+                    <small>Average Wait</small>
+                </div>
+
+                <div class="col-md-3">
+                    <h4 class="text-danger">3</h4>
+                    <small>Active Counters</small>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
                     </div>
                 </div>
             </section>
@@ -475,7 +698,143 @@
                 <div class="card glass border-0">
                     <div class="card-body">
                         <p class="text-muted">Manage your tokens, reschedule visits, and download documentation.</p>
-                        <div id="token-management-content" style="min-height: 400px;"></div>
+                        <div id="token-management-content">
+
+    <div class="row g-4">
+
+        <!-- Active Token -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-3">Active Token</h5>
+
+                    <div class="text-center my-4">
+                        <h1 class="display-4 text-primary">A102</h1>
+                        <span class="badge bg-success">Confirmed</span>
+                    </div>
+
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><strong>Branch</strong></td>
+                            <td>Main Branch</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Service</strong></td>
+                            <td>Account Opening</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Counter</strong></td>
+                            <td>Counter 2</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Estimated Time</strong></td>
+                            <td>10:45 AM</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>People Ahead</strong></td>
+                            <td>5</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-4">Token Actions</h5>
+
+                    <div class="d-grid gap-3">
+
+                        <button class="btn btn-primary">
+                            <i class="bi bi-arrow-repeat me-2"></i>
+                            Reschedule Token
+                        </button>
+
+                        <button class="btn btn-success">
+                            <i class="bi bi-download me-2"></i>
+                            Download Token
+                        </button>
+
+                        <button class="btn btn-warning">
+                            <i class="bi bi-geo-alt me-2"></i>
+                            Navigate to Branch
+                        </button>
+
+                        <button class="btn btn-info text-white">
+                            <i class="bi bi-bell me-2"></i>
+                            Enable Notifications
+                        </button>
+
+                        <button class="btn btn-danger">
+                            <i class="bi bi-x-circle me-2"></i>
+                            Cancel Token
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Recent Tokens -->
+    <div class="card shadow-sm border-0 mt-4">
+        <div class="card-body">
+
+            <h5 class="fw-bold mb-3">Recent Token History</h5>
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>A095</td>
+                        <td>Cash Deposit</td>
+                        <td>25 Jun 2026</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>A088</td>
+                        <td>Loan Enquiry</td>
+                        <td>18 Jun 2026</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>A073</td>
+                        <td>KYC Update</td>
+                        <td>09 Jun 2026</td>
+                        <td><span class="badge bg-secondary">Cancelled</span></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
                     </div>
                 </div>
             </section>
@@ -488,7 +847,167 @@
                 <div class="card glass border-0">
                     <div class="card-body">
                         <p class="text-muted">Advanced AI-powered predictions for queue behavior and optimal arrival times.</p>
-                        <div id="ai-prediction-content" style="min-height: 400px;"></div>
+                        <div id="ai-prediction-content">
+
+    <div class="row g-4">
+
+        <!-- AI Prediction Card -->
+        <div class="col-lg-3">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-graph-up-arrow text-primary fs-1"></i>
+                    <h5 class="mt-3">Crowd Level</h5>
+                    <h2 class="text-danger">High</h2>
+                    <small class="text-muted">
+                        Expected between 11:00 AM - 1:00 PM
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wait Time -->
+        <div class="col-lg-3">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-clock-history text-warning fs-1"></i>
+                    <h5 class="mt-3">Predicted Wait</h5>
+                    <h2 class="text-primary">14 mins</h2>
+                    <small class="text-muted">
+                        Based on live queue analytics
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Confidence -->
+        <div class="col-lg-3">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-cpu-fill text-success fs-1"></i>
+                    <h5 class="mt-3">Prediction Confidence</h5>
+                    <h2 class="text-success">96%</h2>
+                    <small class="text-muted">
+                        Historical accuracy score
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendation -->
+        <div class="col-lg-3">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-lightbulb-fill text-info fs-1"></i>
+                    <h5 class="mt-3">AI Action</h5>
+                    <h2 class="text-success">Open Counter 4</h2>
+                    <small class="text-muted">
+                        Reduce waiting time by 27%
+                    </small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- AI Insights -->
+    <div class="card mt-4 shadow-sm border-0">
+        <div class="card-body">
+
+            <h4 class="mb-4">
+                <i class="bi bi-stars text-primary me-2"></i>
+                AI Insights
+            </h4>
+
+            <div class="alert alert-primary">
+                <strong>Peak Arrival Forecast</strong><br>
+                Customer inflow is expected to increase by
+                <strong>32%</strong> within the next 60 minutes.
+            </div>
+
+            <div class="alert alert-warning">
+                <strong>Bottleneck Detection</strong><br>
+                Counter 3 is predicted to exceed the service SLA due to high transaction complexity.
+            </div>
+
+            <div class="alert alert-success">
+                <strong>Smart Recommendation</strong><br>
+                Redirect customers requiring cash deposits to Counter 1 to balance the workload.
+            </div>
+
+            <div class="alert alert-info">
+                <strong>Best Time to Visit</strong><br>
+                Recommended arrival window:
+                <strong>2:30 PM – 4:00 PM</strong>
+                for minimum waiting time.
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Prediction Table -->
+    <div class="card mt-4 shadow-sm border-0">
+        <div class="card-body">
+
+            <h4 class="mb-4">
+                AI Prediction Summary
+            </h4>
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Metric</th>
+                        <th>Current</th>
+                        <th>Predicted</th>
+                        <th>Trend</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Visitors</td>
+                        <td>126</td>
+                        <td>170</td>
+                        <td><span class="badge bg-danger">▲ +35%</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Queue Length</td>
+                        <td>24</td>
+                        <td>36</td>
+                        <td><span class="badge bg-warning text-dark">▲ Increasing</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Average Wait</td>
+                        <td>12 mins</td>
+                        <td>18 mins</td>
+                        <td><span class="badge bg-danger">▲ +6 mins</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Counter Utilization</td>
+                        <td>78%</td>
+                        <td>94%</td>
+                        <td><span class="badge bg-success">Optimized</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Customer Satisfaction</td>
+                        <td>4.5 / 5</td>
+                        <td>4.8 / 5</td>
+                        <td><span class="badge bg-success">Improved</span></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
                     </div>
                 </div>
             </section>
@@ -501,7 +1020,181 @@
                 <div class="card glass border-0">
                     <div class="card-body">
                         <p class="text-muted">View and manage all your notifications in one place.</p>
-                        <div id="notifications-content" style="min-height: 400px;"></div>
+                        <div id="notifications-content">
+
+    <!-- Notification Controls -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h5 class="mb-0">
+                    <i class="bi bi-bell-fill text-primary me-2"></i>
+                    Notification Preferences
+                </h5>
+
+                <button class="btn btn-outline-primary">
+                    Mark All as Read
+                </button>
+
+            </div>
+
+            <hr>
+
+            <div class="form-check form-switch mt-3">
+                <input class="form-check-input" type="checkbox" checked>
+                <label class="form-check-label">
+                    Queue Progress Updates
+                </label>
+            </div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" checked>
+                <label class="form-check-label">
+                    AI Wait Time Predictions
+                </label>
+            </div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" checked>
+                <label class="form-check-label">
+                    Token Ready Alerts
+                </label>
+            </div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">
+                    Promotional Notifications
+                </label>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Notifications List -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+
+            <h5 class="mb-4">
+                Recent Notifications
+            </h5>
+
+            <div class="list-group">
+
+                <div class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-success">
+                                <i class="bi bi-check-circle-fill me-2"></i>
+                                Token Confirmed
+                            </h6>
+                            <small class="text-muted">
+                                Your token <strong>A102</strong> has been successfully generated.
+                            </small>
+                        </div>
+                        <small>2 mins ago</small>
+                    </div>
+                </div>
+
+                <div class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-primary">
+                                <i class="bi bi-clock-history me-2"></i>
+                                Queue Update
+                            </h6>
+                            <small class="text-muted">
+                                Only <strong>5 customers</strong> remain before your turn.
+                            </small>
+                        </div>
+                        <small>8 mins ago</small>
+                    </div>
+                </div>
+
+                <div class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-warning">
+                                <i class="bi bi-cpu-fill me-2"></i>
+                                AI Recommendation
+                            </h6>
+                            <small class="text-muted">
+                                Arrive after <strong>2:30 PM</strong> to reduce your waiting time.
+                            </small>
+                        </div>
+                        <small>15 mins ago</small>
+                    </div>
+                </div>
+
+                <div class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-danger">
+                                <i class="bi bi-exclamation-circle-fill me-2"></i>
+                                Delay Alert
+                            </h6>
+                            <small class="text-muted">
+                                Counter 3 is experiencing delays. Estimated wait increased by 6 minutes.
+                            </small>
+                        </div>
+                        <small>20 mins ago</small>
+                    </div>
+                </div>
+
+                <div class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-info">
+                                <i class="bi bi-geo-alt-fill me-2"></i>
+                                Arrival Reminder
+                            </h6>
+                            <small class="text-muted">
+                                Please reach the branch within the next <strong>15 minutes</strong>.
+                            </small>
+                        </div>
+                        <small>30 mins ago</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mt-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h3 class="text-primary">12</h3>
+                    <p class="mb-0">Notifications Today</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h3 class="text-success">9</h3>
+                    <p class="mb-0">Read</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h3 class="text-danger">3</h3>
+                    <p class="mb-0">Unread</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
                     </div>
                 </div>
             </section>
@@ -517,7 +1210,7 @@
                             <div class="card-body">
                                 <div class="support-icon"><i class="bi bi-telephone"></i></div>
                                 <h5>Helpline</h5>
-                                <p class="text-muted">1-800-QUEUE-911</p>
+                                <p class="text-muted">1-800-49876-911</p>
                                 <small>24/7 Support</small>
                             </div>
                         </div>
@@ -563,7 +1256,168 @@
                 <div class="card glass border-0">
                     <div class="card-body">
                         <p class="text-muted">Generate and view detailed reports on queue performance and analytics.</p>
-                        <div id="reports-content" style="min-height: 400px;"></div>
+                        <div id="reports-content">
+
+    <!-- KPI Cards -->
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-people-fill fs-1 text-primary"></i>
+                    <h3 class="mt-3">1,284</h3>
+                    <p class="text-muted mb-0">Customers Served</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-clock-history fs-1 text-warning"></i>
+                    <h3 class="mt-3">11 mins</h3>
+                    <p class="text-muted mb-0">Average Wait Time</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-emoji-smile fs-1 text-success"></i>
+                    <h3 class="mt-3">94%</h3>
+                    <p class="text-muted mb-0">Customer Satisfaction</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-graph-up-arrow fs-1 text-danger"></i>
+                    <h3 class="mt-3">27%</h3>
+                    <p class="text-muted mb-0">AI Efficiency Gain</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Chart Placeholders -->
+    <div class="row mt-4">
+
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="mb-3">Daily Queue Trend</h5>
+
+                    <canvas id="queueTrendChart" height="220"></canvas>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="mb-3">Service Distribution</h5>
+
+                    <canvas id="serviceChart" height="220"></canvas>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Branch Performance -->
+    <div class="card shadow-sm border-0 mt-4">
+        <div class="card-body">
+
+            <h4 class="mb-4">
+                Branch Performance
+            </h4>
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Branch</th>
+                        <th>Customers</th>
+                        <th>Avg Wait</th>
+                        <th>Satisfaction</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Main Branch</td>
+                        <td>482</td>
+                        <td>10 mins</td>
+                        <td>96%</td>
+                        <td><span class="badge bg-success">Excellent</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>North Branch</td>
+                        <td>351</td>
+                        <td>13 mins</td>
+                        <td>92%</td>
+                        <td><span class="badge bg-primary">Good</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>South Branch</td>
+                        <td>276</td>
+                        <td>15 mins</td>
+                        <td>90%</td>
+                        <td><span class="badge bg-warning text-dark">Moderate</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>East Branch</td>
+                        <td>175</td>
+                        <td>8 mins</td>
+                        <td>98%</td>
+                        <td><span class="badge bg-success">Excellent</span></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+    <!-- AI Analytics -->
+    <div class="card shadow-sm border-0 mt-4">
+        <div class="card-body">
+
+            <h4 class="mb-3">
+                AI Performance Insights
+            </h4>
+
+            <div class="alert alert-success">
+                AI scheduling reduced customer waiting time by
+                <strong>27%</strong> compared to manual queue allocation.
+            </div>
+
+            <div class="alert alert-primary">
+                Peak crowd predicted with
+                <strong>96% accuracy</strong> over the past 30 days.
+            </div>
+
+            <div class="alert alert-warning">
+                Opening one additional counter during peak hours could increase service throughput by
+                <strong>18%</strong>.
+            </div>
+
+        </div>
+    </div>
+
+</div>
                     </div>
                 </div>
             </section>
@@ -576,7 +1430,230 @@
                 <div class="card glass border-0">
                     <div class="card-body">
                         <p class="text-muted">Configure your preferences and account settings.</p>
-                        <div id="settings-content" style="min-height: 400px;"></div>
+                        <div id="settings-content">
+
+    <div class="row g-4">
+
+        <!-- Profile Settings -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+
+                    <h5 class="mb-4">
+                        <i class="bi bi-person-circle text-primary me-2"></i>
+                        Profile Information
+                    </h5>
+
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" value="John Doe">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" value="john@example.com">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Mobile Number</label>
+                        <input type="text" class="form-control" value="+91 98765 43210">
+                    </div>
+
+                    <button class="btn btn-primary">
+                        Save Changes
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Settings -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+
+                    <h5 class="mb-4">
+                        <i class="bi bi-bell-fill text-warning me-2"></i>
+                        Notification Preferences
+                    </h5>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" checked>
+                        <label class="form-check-label">
+                            Queue Updates
+                        </label>
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" checked>
+                        <label class="form-check-label">
+                            Token Ready Alerts
+                        </label>
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" checked>
+                        <label class="form-check-label">
+                            AI Recommendations
+                        </label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox">
+                        <label class="form-check-label">
+                            Promotional Messages
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- AI Preferences -->
+    <div class="card shadow-sm border-0 mt-4">
+        <div class="card-body">
+
+            <h5 class="mb-4">
+                <i class="bi bi-cpu-fill text-success me-2"></i>
+                AI Preferences
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        AI Prediction Mode
+                    </label>
+
+                    <select class="form-select">
+                        <option selected>Balanced</option>
+                        <option>High Accuracy</option>
+                        <option>Fast Prediction</option>
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Arrival Notifications
+                    </label>
+
+                    <select class="form-select">
+                        <option selected>15 Minutes Before</option>
+                        <option>30 Minutes Before</option>
+                        <option>1 Hour Before</option>
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Preferred Branch
+                    </label>
+
+                    <select class="form-select">
+                        <option>Main Branch</option>
+                        <option>North Branch</option>
+                        <option>South Branch</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Security -->
+    <div class="card shadow-sm border-0 mt-4">
+        <div class="card-body">
+
+            <h5 class="mb-4">
+                <i class="bi bi-shield-lock-fill text-danger me-2"></i>
+                Security Settings
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <button class="btn btn-outline-primary w-100">
+                        Change Password
+                    </button>
+                </div>
+
+                <div class="col-md-4">
+                    <button class="btn btn-outline-success w-100">
+                        Enable Two-Factor Authentication
+                    </button>
+                </div>
+
+                <div class="col-md-4">
+                    <button class="btn btn-outline-danger w-100">
+                        Logout from All Devices
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- App Preferences -->
+    <div class="card shadow-sm border-0 mt-4">
+        <div class="card-body">
+
+            <h5 class="mb-4">
+                <i class="bi bi-gear-fill text-secondary me-2"></i>
+                App Preferences
+            </h5>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Language
+                    </label>
+
+                    <select class="form-select">
+                        <option selected>English</option>
+                        <option>தமிழ்</option>
+                        <option>Hindi</option>
+                    </select>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Theme
+                    </label>
+
+                    <select class="form-select">
+                        <option selected>Light</option>
+                        <option>Dark</option>
+                        <option>System Default</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <button class="btn btn-success">
+                Save Preferences
+            </button>
+
+        </div>
+    </div>
+
+</div>
                     </div>
                 </div>
             </section>
@@ -585,9 +1662,8 @@
             <footer class="footer">
                 <div class="footer-content">
                     <div class="footer-section">
-                        <img src="assets/logo.svg" alt="Logo" style="height: 24px; margin-bottom: 8px;">
                         <h6>Smart Queue Buddy</h6>
-                        <p>Enterprise Queue Intelligence Software</p>
+                        <p>Queue Intelligence Software</p>
                     </div>
                     <div class="footer-section">
                         <small>AI That Gives Time Back</small>
